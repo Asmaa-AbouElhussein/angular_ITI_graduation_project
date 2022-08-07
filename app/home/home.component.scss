@@ -1,0 +1,184 @@
+#main{
+  background-color: #FCFAF2; 
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+#home .carousel-item{
+min-height: 60vh;
+background-position: center;
+background-size: cover;
+position: relative;
+z-index: 1;
+}
+
+#home .carousel-item::before{
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,.5);
+z-index: -1;
+}
+
+
+#home .carousel-item h2{
+  color: #f2f2f2;
+  font-size: 50px;
+  margin: 0 0 10px;
+  opacity: 0;
+  
+}
+
+
+#home .carousel-item p {
+  font-size: 30px;
+  color: #eeee;
+  margin: 0;
+  opacity: 0;
+}
+
+
+.carousel-controls{
+position: absolute;
+
+bottom: 0px;
+left: 50%;
+z-index: 10;
+transform: translate(-50%);
+  
+}
+.carousel-indicators{
+position: relative;
+}
+.carousel-indicators li{
+  
+  height: 50px;
+  width:80px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  border: 2px solid transparent;
+  transition:all .3s linear ;
+}
+.carousel-indicators li.active{
+border-color: #f2f2f2;
+transform: scale(1.07);
+}
+
+#home .active h2 {
+  
+  
+animation: fadeinleft 0.7s ease forwards;
+}
+
+#home .active p{
+   
+  animation: fadeinright .5s ease forwards;
+  }
+
+@keyframes fadeinleft {
+  0%{
+   opacity: 0;
+transform: translateX(-30px);
+  }
+  100%{
+      opacity: 1;
+transform: translateX(0px);
+
+  }
+}
+
+@keyframes fadeinright {
+  0%{
+      opacity: 0;
+transform: translateX(30px);
+  }
+  100%{
+      opacity: 1;
+transform: translateX(0px);
+
+  }
+}
+
+
+
+
+#home .carousel-item .container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+text-align: center;
+}
+
+@media (min-width:576px){
+.img-width{
+ width: 100%; 
+}
+
+}
+
+
+@media (min-width:992px){
+  .img-width{
+     width: 80%; 
+  }
+  
+   }
+.btn-list{
+
+height: 40px;
+width: 150px;
+cursor: pointer;
+}
+
+.card-clr{
+ background-color: #F4EAE1;  
+
+}
+
+@media (min-width:992px) {
+  .card-bdy:hover{
+      transform: scale(1.05);
+      box-shadow: 0 10px 40px 0 rgba(0,0,0,.4);
+      transition: transform ease-in-out .5s;
+  
+  }
+}
+
+
+
+.border-section{
+  background-color: #ffffff;
+  border-radius: 0 15% 15% 0;
+  
+}
+
+.footer-cls{
+  background-color:#19283f;// #2B3647;
+  
+  margin-right: 0;
+  margin-bottom: 0;
+
+}
+
+.footer-txt{
+  color: white;
+}
+
+.footer-headers{
+  color: #FFC000;
+}
+
+@media(min-width:768px){
+.footer-border{
+  border-right: 1px solid #FFC000;
+}
+}

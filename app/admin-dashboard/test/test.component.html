@@ -1,0 +1,59 @@
+
+<!-- Button trigger modal -->
+<button type="button" (click)="add()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VideoModal">
+ اضافه فيديو جديد
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="VideoModal" data-bs-static="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" (click)="refreshData()" class="close" data-bs-dismiss="modal" aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-video-form  [FKS]=" GetFk" ></app-video-form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="refreshData()" class="btn btn-secondary" data-bs-dismiss="modal">قفل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table  table-bordered mt-3 table-striped table-success">
+    <thead>
+         <tr>
+            <th> الاسم</th>
+            <th> الوصف</th>
+            <th> مسار الفيديو</th>
+            <th> كود العنوان</th>
+         </tr>
+    </thead>
+    <tbody>
+        <ng-container  *ngFor="let item of selectedList">
+
+            <tr class="table-active">
+                      
+               <td>{{item.name}}</td>
+               <td>{{item.description}}</td>
+               <td>{{item.videopath}}</td>
+               <td>{{item.courses_Categoryid}}</td>
+                <td>
+                    <button class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#VideoModal" (click)="Update(item.id)">update</button>
+                    <button class="btn btn-danger" (click)="delete(item)">delete</button>
+                           
+                </td>
+              </tr>
+
+        </ng-container>
+        
+      
+    
+    </tbody>
+  </table>

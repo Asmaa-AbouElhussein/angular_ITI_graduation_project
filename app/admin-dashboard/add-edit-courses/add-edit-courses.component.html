@@ -1,0 +1,84 @@
+<div class="col-12 p-2 m-auto">
+
+    <form #courseform ="ngForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="form-group mt-2">
+                    <label  class=" mb-1">اسم الكورس</label>
+                <input type="text" class="form-control"name="name"required [class.is-invalid]="name.invalid&&name.touched"  #name="ngModel" [(ngModel)]="course.name" [ngModelOptions]="{standalone: true}"
+                placeholder="ادخل اسم الكورس">
+                <div *ngIf="name.errors&&name.touched">
+                    <small class="text-danger" *ngIf="name.errors['required']">مطلوب</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label  class=" mb-1">السعر</label>
+               <input class="form-control"name="price" type="number"required [class.is-invalid]="price.invalid&&price.touched" #price="ngModel" [(ngModel)]="course.price" [ngModelOptions]="{standalone: true}"
+               placeholder="ادخل السعر">  
+               <div *ngIf="course.price==0">
+                <small class="text-danger" *ngIf="price.touched">مطلوب</small>
+            </div>   
+            </div>
+            <div class="form-group mt-2">
+                <label  class=" mb-1">الخصم</label>
+               <input class="form-control" type="number"name="discount" [(ngModel)]="course.discount" [ngModelOptions]="{standalone: true}"
+               placeholder="ادخل نسبة الخصم"> 
+                
+            </div>
+            <div class="form-group mt-2">
+                <label  class=" mb-1"> الوصف</label>
+               <textarea class="form-control"name="descrip" type="text"required [class.is-invalid]="describ.invalid&&describ.touched"  #describ="ngModel" aria-multiline="true" [(ngModel)]="course.description" [ngModelOptions]="{standalone: true}"
+               placeholder="اضف وصف للكورس">   </textarea> 
+               <div *ngIf="describ.errors&&describ.touched">
+                <small class="text-danger" *ngIf="describ.errors['required']">مطلوب</small>
+            </div> 
+            </div>
+            <div class="form-group mt-2">
+                <label  class=" mb-1">عدد الفديوهات</label>
+               <input class="form-control"name="videos" type="number"required [class.is-invalid]="videos.invalid&&videos.touched" #videos="ngModel"[(ngModel)]="course.numberofvideos" [ngModelOptions]="{standalone: true}"
+               placeholder="ادخل عدد مقاطع الكورس">     
+               <div *ngIf="course.numberofvideos==0">
+                <small class="text-danger" *ngIf="videos.touched">مطلوب</small>
+            </div> 
+            </div>
+            <div class="form-group mt-2">
+                <label  class=" mb-1"> عدد ساعات الكورس</label>
+               <input class="form-control"name="hours" type="number"required [class.is-invalid]="hours.invalid&&hours.touched" #hours="ngModel" [(ngModel)]="course.numberofhours" [ngModelOptions]="{standalone: true}"
+               placeholder="ادخل عدد ساعات الكورس">     
+               <div *ngIf="course.numberofhours==0">
+                <small class="text-danger" *ngIf="hours.touched">مطلوب</small>
+            </div> 
+            </div>
+        
+            <div class="form-group mt-2">
+                <label  class=" m-2"> تاريخ الاضافه</label>
+                <input type="date"name="date"required [class.is-invalid]="date.invalid&&date.touched"  #date="ngModel"  [(ngModel)]="course.date"[ngModelOptions]="{standalone: true}">
+                <div *ngIf="date.errors&&date.touched">
+                    <small class="text-danger" *ngIf="date.errors['required']">مطلوب</small>
+                </div>
+            </div>
+            
+            <div class="form-group mt-2">
+                <label  class=" mb-1">كود الكورس</label>
+               <input class="form-control"name="code" type="text"required [class.is-invalid]="code.invalid&&code.touched"  #code="ngModel" [(ngModel)]="course.code" [ngModelOptions]="{standalone: true}"
+               placeholder="ادخل كود الكورس" >     
+               <div *ngIf="code.errors&&code.touched">
+                <small class="text-danger" *ngIf="code.errors['required']">مطلوب</small>
+            </div>
+            </div>
+        
+        
+        <div class="ml-3 bd-highlight mt-2" style="width: 40%;" >
+            <img src="{{course.imgpath}}" height="250px;" width="200px;" *ngIf="course.imgpath!=null"class="img-fliud">  
+            <input type="file"accept="image/*"name="img" (change)="uploadPhoto($event)" class="mt-2"required [class.is-invalid]="img.invalid&&img.touched"  #img="ngModel" [(ngModel)]="course.imgpath" [ngModelOptions]="{standalone: true}" />
+            <div *ngIf="img.errors&&img.touched">
+                <small class="text-danger" *ngIf="img.errors['required']">مطلوب</small>
+            </div>
+       
+        </div> 
+        
+          <div class="form-group mt-2">
+            <button type="submit"*ngIf="course.id==0"  class="btn mt-2" [class.btn-danger]="courseform.form.invalid" [disabled]="courseform.form.invalid" [class.btn-success]="courseform.form.valid">أضافه</button>
+            
+            <button type="submit"*ngIf="course.id!=0"  class="btn mt-2" [class.btn-danger]="courseform.form.invalid" [disabled]="courseform.form.invalid" [class.btn-success]="courseform.form.valid">تعديل</button>
+        </div> 
+    </form>   
+</div>

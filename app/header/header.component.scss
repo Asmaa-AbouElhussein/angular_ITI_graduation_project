@@ -1,0 +1,21 @@
+#ico:hover{
+    color: #ffffff;
+    }
+    #ico{
+        color:#c8d8e4
+    }
+    #titl{
+        color:#ffffff;
+        margin-left: 1rem;
+        float: right;
+        border:2px  #c8d8e4 solid;
+        padding: 5px 10px 5px 10px;
+        font-size: 20px;
+    }
+    #titl:hover{
+        border-width: 2px;
+        border-style: solid;
+        border-image: linear-gradient(to right,#2ebbe2, #52ab98)1;
+        color: #2b6777;
+       cursor: pointer;
+    }

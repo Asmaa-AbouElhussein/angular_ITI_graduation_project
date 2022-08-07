@@ -1,0 +1,67 @@
+<ng-container *ngIf="datalist !=null">
+    <form #userForm="ngForm" novalidate action="" method="post" (ngSubmit)="onFormSubmit()" >
+
+        
+
+        <div class="form-group">
+            <label for="name" class=" mb-1">الاسم</label>
+            <input type="text" class="form-control" id="name"name="name" required [class.is-invalid]="user.invalid&&user.touched"  #user="ngModel" [(ngModel)]="datalist.name" placeholder="ادخل الاسم">
+            <div *ngIf="user.errors&&user.touched">
+                <small class="text-danger" *ngIf="user.errors['required']">مطلوب</small>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="description" class=" mb-1">الوصف</label>
+          <input type="text" class="form-control" id="description" name="description" required [class.is-invalid]="user2.invalid&&user2.touched"  #user2="ngModel" [(ngModel)]="datalist.description" placeholder="ادخل الوصف">
+          <div *ngIf="user2.errors&&user2.touched">
+              <small class="text-danger" *ngIf="user2.errors['required']">مطلوب</small>
+          </div>
+      </div>
+
+
+
+
+      
+
+
+
+                        <div class="form-group">
+                            <label for="inputTag" class="form-label"> كود الفئه</label>
+                     
+                                <ng-container *ngIf="FKS.length > 0">
+                  
+                              <select class="form-select rounded border-primary " id="inputTag" name="inputTag" #state="ngModel" [(ngModel)]="datalist.courses_Categoryid" required  [class.is-invalid]="state.invalid&&state.touched">
+                                 <option selected  *ngIf="datalist.id==0"> اختيار كود الفئه </option> 
+                                  
+                                                  <ng-container  *ngFor="let item of FKS">
+                                                    
+                                                      <option > {{item}}</option>               
+                                                     
+                                                  </ng-container>
+                                              </select>
+                                              
+                                              <small class="text-danger" *ngIf="state.errors&&state.touched">Required</small>
+                                        
+                                          </ng-container>
+                                       </div> 
+                 
+
+<input type="file" accept="video/mp4,video/x-m4v,video/*" (change)="selectfile($event)"/>
+
+
+
+<ng-container *ngIf="res.length > 0">
+<img src="{{res[0].name}}" width="40%"  alt="">
+<p>{{res[0].lenght}}</p>
+
+</ng-container>
+<small class="text-danger" *ngIf="err">مطلوب</small>
+<small class="text-danger" *ngIf="err2">مسار الفيديو مطلوب</small>
+
+
+
+        <button type="submit"  class="btn btn-success" [disabled]="userForm.form.invalid" [class.btn-success]="userForm.form.valid" [class.btn-danger]="userForm.form.invalid">أضافه</button>
+
+
+    </form>
+</ng-container>

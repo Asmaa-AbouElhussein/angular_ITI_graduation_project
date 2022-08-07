@@ -1,0 +1,76 @@
+<!-- start  section  -->
+<div class="container d-flex align-items-center flex-column" >
+    <div class="section-contnet text-center py-4">
+        <h2 class="py-2 text-danger">Courses</h2>
+    </div>
+    <div class="section-cards row  py-2 my-2 " >
+        <!-- <div ></div> -->
+        <!-- <ng-template #Courses *ngIf="courseList!=null"> -->
+            <div class="col py-2 col-md-3" *ngFor="let item of courseList">
+                <div class="card mw-100   align-items-center" appCardHover >
+                    <div class="mh-100">
+                        <img class="card-img-top " [src]="item.imgpath" alt="Card image cap">
+                    </div>
+                    <div class="card-body text-center py-4" appCardHover >
+                        <h3 class="card-title">اسم الكورس: {{item.name}}</h3>
+                        <h4 class="card-text">الوصف: {{item.description}}</h4>
+                        <h5 class="card-text">التخفيض: {{item.discount | percent}}</h5>
+                        <h3 class="card-title">السعر: {{item.price}}</h3>
+                        <!-- <button class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#modal1" >التفاصيل</button>  -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">
+                            التفاصيل
+                          </button>
+                          
+                        <div class="modal-body">
+                            
+                          </div>
+                          
+                    </div>
+                </div>
+                <div class="container-fluid modal fade " id="modal1" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-tittle">التفاصيل</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close" style="float: left;"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <div class="ml-3 bd-highlight " style="width: 40%;" >
+                                     <img [src]="item.imgpath" height="250px;" width="200px;" *ngIf="item.imgpath!=null">  
+                                    <img class="card-img-top " src="{{item.imgpath}}" alt="Card image cap">
+                                
+                                </div>  -->
+                                <div class="ml-3 bd-highlight" style="width: 60%;" >
+                                    <h3 class="card-title">اسم الكورس: {{item.name}}</h3>
+                                    <h4 class="card-text">الوصف: {{item.description}}</h4>
+                                    <h5 class="card-text">التخفيض: {{item.discount | percent}}</h5>
+                                    <h3 class="card-title">السعر: {{item.price}}</h3>
+                                    <h3 class="card-title">الكود: {{item.code}}</h3>
+                                    <h3 class="card-title">عدد الساعات: {{item.numberofhours}}</h3>
+                                    <h3 class="card-title">عدد المقاطع: {{item.numberofvideos}}</h3>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+        <!-- </ng-template> -->
+        <!-- <ng-template #buyied>
+            <div>
+                <h4 class="text-danger text-center">Thanks for purchasing from our Store :{{ClientName}} </h4> -->
+                <!-- <h4 class="text-danger text-center">  </h4>
+
+            </div>
+        </ng-template> --> -->
+        <!-- <div class="my-3 nav justify-content-center">
+            <button class="btn btn-success mx-3" (click) = "discount()"> Products With Discount   </button>
+            <button class="btn btn-danger mx-3" (click) = "renderValues()"> All Products   </button>
+            <button class="btn btn-warning mx-3" (click) = "withoutdisc()"> Products Without Dsicount</button>
+        </div> -->
+    </div>
+</div>
+<!-- End  section  -->
