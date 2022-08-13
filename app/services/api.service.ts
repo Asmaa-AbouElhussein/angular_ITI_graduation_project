@@ -37,4 +37,19 @@ return this.http.get<any[]>(this.Apiurl+'/registration');
   {
     return this.http.post(this.Apiurl+'/registration',val,{responseType:'text'});
   }
+  sendemailcode(val:any)
+  {
+    return this.http.post(this.Apiurl+'/sendverification',val);
+  }
+  sendbroadcast(val:any)
+  {
+    return this.http.post(this.Apiurl+'/broadcastemail',val);
+  }
+  getallpurchased():Observable<any[]>
+  {
+return this.http.get<any[]>(this.Apiurl+'/purchasedcourses');
+  }
+  GetCatBYFK(VideID:number):Observable<any>{
+    return this.http.get(this.Apiurl + "/Courses_category/Get_category/"+VideID)
+    }
 }

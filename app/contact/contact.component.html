@@ -26,11 +26,13 @@
           <div class="col-lg-7 mb-5">
             <div class="contact-form">
               <div id="success"></div>
-              <form name="sentMessage" id="contactForm" novalidate="novalidate">
+              <form #form="ngForm" (ngSubmit)="SendEmailmessage()" name="sentMessage" id="contactForm" novalidate="novalidate">
                 <div class="control-group">
                   <input
                     type="text"
                     class="form-control"
+                    name="name"
+                    [(ngModel)]="Contactusdata.name"
                     id="name"
                     placeholder="اسمك"
                     required="required"
@@ -41,15 +43,18 @@
                 <div class="control-group">
                   <input
                     type="email"
+                    name="Email"
+                    [(ngModel)]="Contactusdata.Email"
                     class="form-control"
                     id="email"
                     placeholder="بريدك الالكتروني"
                     required="required"
                     data-validation-required-message="ادخل بريدك الالكتروني"
                   />
+
                   <p class="help-block text-danger"></p>
                 </div>
-                <div class="control-group">
+                <!-- <div class="control-group">
                   <input
                     type="text"
                     class="form-control"
@@ -59,22 +64,25 @@
                     data-validation-required-message="ادخل الموضوع"
                   />
                   <p class="help-block text-danger"></p>
-                </div>
+                </div> -->
                 <div class="control-group">
                   <textarea
                     class="form-control"
                     rows="6"
                     id="message"
+                    name="body"
+                    [(ngModel)]="Contactusdata.body"
                     placeholder="الرسالة"
                     required="required"
                     data-validation-required-message="ادخل رسالتك"
                   ></textarea>
                   <p class="help-block text-danger"></p>
                 </div>
+
                 <div>
                   <button
                     class="btn  py-2 px-4" style="background-Color:#2ebbe2"
-                    type="submit"
+                    type="submit" 
                     id="sendMessageButton"
                   >
                  ارسل الرسالة

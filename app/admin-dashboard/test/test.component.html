@@ -31,18 +31,15 @@
          <tr>
             <th> الاسم</th>
             <th> الوصف</th>
-            <th> مسار الفيديو</th>
             <th> كود العنوان</th>
          </tr>
     </thead>
     <tbody>
         <ng-container  *ngFor="let item of selectedList">
 
-            <tr class="table-active">
-                      
+            <tr class="table-active">        
                <td>{{item.name}}</td>
                <td>{{item.description}}</td>
-               <td>{{item.videopath}}</td>
                <td>{{item.courses_Categoryid}}</td>
                 <td>
                     <button class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#VideoModal" (click)="Update(item.id)">update</button>

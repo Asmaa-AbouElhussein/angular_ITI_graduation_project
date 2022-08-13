@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ICourses_category } from 'src/app/models/classes';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -8,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./show-category.component.scss']
 })
 export class ShowCategoryComponent implements OnInit {
-  constructor(private service:ApiService) { }
+  constructor(private service:ApiService,private toastr:ToastrService) { }
   ActivateAddandEdit:boolean=false;
   ModalTitle:string="";
   categoryobj:any;

@@ -39,4 +39,9 @@ export class CoursesapiService {
   {
 return this.http.get<ICoursesDetails["id"][]>(this.baseURL+'/Course_detailes');
   }
+  getCourseByid(id:number):Observable<ICoursesDetails>
+  {
+    return this.http.get<ICoursesDetails>(this.baseURL+'/Course_detailes/'+id);
+  }
+ 
 }

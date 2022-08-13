@@ -9,5 +9,87 @@
     <div class="row  pt-3 pb-3 " >
         <app-test class="col-10 m-auto text-center mb-5"></app-test> 
     </div>
-    
-</section>
+    <div class="row  pt-3 pb-3 " >
+     <button data-bs-toggle="modal" (click)="openCodeModel()" data-bs-target="#codeModal" class="col-10 m-auto mb-5 py-2 fs-4  text-center w-25 text-light btn btn-success btn-outline-primary" >ارسال كود</button>
+     </div>
+   
+     <!-- Modal -->
+     <div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+            <form action="" (ngSubmit)="onSubmit()">
+            <div class="row">
+            <div class="form-group col-6"style="margin:10px 0px;">
+                <label>الايميل</label>
+                <input
+                required   
+                name="email"
+                placeholder="ادخل الايميل"
+                [(ngModel)]="email"
+                  type="text"
+                 
+                  class="form-control"/>
+                </div>
+            
+                
+                <ng-container *ngIf="crsdetailsID.length > 0">
+                <div class="form-group mt-2 col-6">
+                    <label for="course_Detailesid" class=" mb-1">كود الكورس </label>
+                    <select   class="form-select rounded border-primary text-end" 
+                    id="crsdetailsID"name="selectedItem" [(ngModel)]="selectedItem"> 
+                    
+                       <option selected disabled>يرجى اختيار كود الكورس</option>
+                        <option  *ngFor="let item of crsdetailsID">
+                            {{item}}
+                        </option>
+                    </select>
+                   
+                        <!-- <small class="text-danger" [class.d-none]="!iderror || state.untouched">مطلوب</small> -->
+               
+                </div>
+              </ng-container>
+
+            </div>
+            
+          <div class="row my-3">
+              
+            <div class="col">
+            <button type="button" class="btn btn-success" (click)="generateCode()">انشاء كود</button>   
+              </div>
+            
+              <p class="col fs-3 text-dark fw-bold" #parValue ></p>
+            </div>
+             
+            
+            <ng-container *ngIf="iscodehidden == false">
+            
+            <div class="text-light text-start ">
+            <button class="btn btn-secondary fs-5 " 
+            (click)="copyToClipboard()">نسخ الكود</button>
+          </div>
+        
+        </ng-container>
+        <button type="submit" class="btn btn-primary">save</button>
+            </form>
+
+
+              
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             
+           </div>
+         </div>
+       </div>
+     </div>
+      
+
+  
+   
+
+    </section>

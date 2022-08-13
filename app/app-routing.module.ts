@@ -5,9 +5,11 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
 import { CouresesComponent } from './coureses/coureses.component';
-import { ForumComponent } from './forum/forum.component';
+import { CoursesDetailesComponent } from './courses-detailes/courses-detailes.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { VideosPageComponent } from './videos-page/videos-page.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:'courses',component:CouresesComponent},
   {path:'contact',component:ContactComponent},
   {path:'about',component:AboutComponent},
-  {path:'forum',component:ForumComponent},
+  {path:'password',component:ForgotPasswordComponent},
+  {path:'coursedetailes/:id',component:CoursesDetailesComponent},
+  {path:'coursedetailes/:id/:id',component: VideosPageComponent},
   {path:'**',component:NotfoundComponent}
 ];
 

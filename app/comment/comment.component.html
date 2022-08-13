@@ -6,37 +6,19 @@
                     <swiper [slidesPerView]="3" [spaceBetween]="50" [loop]="true" [autoHeight]="true"
                         [allowTouchMove]="true" [autoplay]="{ delay: 1000, disableOnInteraction: false }"
                         [pagination]="{ clickable: true }" [navigation]="true">
-
+                       
+                        <ng-container *ngFor="let item of usersComments">
+                       
                         <ng-template swiperSlide>
                             <div class="card ">
+                              
                                 <div class="img1"></div>
-                                <div class="img2"><img src="assets/1.jpg" alt=""></div>
-                                <div class="main-text">
-                                    <h2>Person 1</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
-                                    </p>
-                                </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
+                                <div class="img2"><img [src]="item.avatarpath" alt=""></div>
+                                 <div class="main-text">
+                                    <h2>{{item.userName}}</h2>
+                                    <p class="text-muted">{{item.comment}}
+                                    <p>{{item.date}}
 
-                        <ng-template swiperSlide>
-                            <div class="card">
-                                <div class="img1">
-                                </div>
-                                <div class="img2">
-                                    <img src="assets/2.png" alt="">
-                                </div>
-                                <div class="main-text">
-                                    <h2>Person 2</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
                                     </p>
                                 </div>
                                 <div class="socials">
@@ -47,140 +29,57 @@
                                 </div>
                             </div>
                         </ng-template>
-
-                        <ng-template swiperSlide>
-                            <div class="card">
-                                <div class="img1">
-                                </div>
-                                <div class="img2">
-                                    <img src="assets/3.png" alt="">
-                                </div>
-                                <div class="main-text">
-                                    <h2>Person 3</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
-                                    </p>
-                                </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template swiperSlide>
-                            <div class="card">
-                                <div class="img1">
-                                </div>
-                                <div class="img2">
-                                    <img src="assets/3.png" alt="">
-                                </div>
-                                <div class="main-text">
-                                    <h2>Person 3</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
-                                    </p>
-                                </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template swiperSlide>
-                            <div class="card">
-                                <div class="img1"></div>
-                                <div class="img2">
-                                    <img src="assets/3.png" alt="">
-                                </div>
-                                <div class="main-text">
-                                    <h2>Person 3</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
-                                    </p>
-                                </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template swiperSlide>
-                            <div class="card">
-                                <div class="img1">
-                                </div>
-                                <div class="img2">
-                                    <img src="assets/3.png" alt="">
-                                </div>
-                                <div class="main-text">
-                                    <h2>Person 3</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, doloribus
-                                        quos
-                                    </p>
-                                </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
+                    </ng-container>
                     </swiper>
                 </div>
                 <div class="addBtn">
                     <button type="button" (click)="checkLogin()" class="btn btn-outline-success" data-bs-toggle="modal"
-                        data-bs-target="#coursesmodal" (click)="addClick()" data-bs-backdrop="static"
+                        data-bs-target="#staticBackdrop" (click)="addClick()" 
                         data-bs-keyboard="false">اضافة تعليق</button>
-
+                                                                
                     <!-- <button type="button" class="btn btn-primary m-auto text-center " data-bs-toggle="modal"
                         data-bs-target="#coursesmodal" (click)="addClick()" data-bs-backdrop="static"
                         data-bs-keyboard="false">اضافة تعليق</button> -->
                 </div>
 
-                <div class="modal fade" id="coursesmodal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div style="width: auto;" class="modal-dialog modal-dialog-centered mdal-xl" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
-                                    (click)="closeClick()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div *ngIf="islogged; then elslogin; else Thencomment" > </div>
-                            <div class="modal-body">
-                                
-                                
+                <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                (click)="closeClick()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div *ngIf="islogged; then Thencomment ; else elslogin" > </div>
+
                                 <ng-template #elslogin>
                                       <app-login></app-login>
                                 </ng-template>
                                
-                                <ng-template #Thencomment>
-                                   
+                               
+                                <ng-template #Thencomment>        
                                 <div class="all">
                                     <div class="comment-box">
                                         <h2>comments</h2>
-                                        <input type="text" name="full name" placeholder=" اسم المستخدم">
-                                        <input type="email" name="email" placeholder=" ادخل الايميل">
-                                        <textarea name="comment" id="" cols="30" rows="10"
+                                        <div *ngIf="invalidComment" class="alert alert-danger my-2 py-3 w-100">برجاء ادخال تعليق</div>
+                                        <textarea #textar name="comment"   id="" cols="30" rows="10"
                                             placeholder="ادخل تعليق "></textarea>
-                                        <button type="submit">تسجيل </button>
+                                        <button type="submit" (click)="submitComment(textar)">تسجيل </button>
                                     </div>
+                                    
                                 </div>
-                            </ng-template>
+                           </ng-template>
+                            
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
                                     
+
                               
                                 
         </div>

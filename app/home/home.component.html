@@ -1,264 +1,154 @@
 <main class="container-fluid"id="main">
-   <section class="row"id="home">
-
-    <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-controls">
-
-            <ol class="carousel-indicators">
-
-                <li style="background-image:url('../../assets/img1.jpg');"
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></li>
-                <li style="background-image:url('../../assets/img1.jpg');"
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></li>
-                <li style="background-image:url('../../assets/img1.jpg');"
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></li>
-            </ol>
+    <section class="row"id="home">
+ 
+     <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+         <div class="carousel-controls">
+ 
+             <ol class="carousel-indicators">
+ 
+                 <li style="background-image:url('../../assets/img1.jpg');"
+                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                     aria-current="true" aria-label="Slide 1"></li>
+                 <li style="background-image:url('../../assets/img1.jpg');"
+                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></li>
+                 <li style="background-image:url('../../assets/img1.jpg');"
+                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></li>
+             </ol>
+         </div>
+         <div class="carousel-inner">
+             <div class="carousel-item active" style="background-image:url('../../assets/img1.jpg') ;">
+ 
+                 <div class="container ">
+                     <h2>welcome to course</h2>
+                     <p>this course for you</p>
+ 
+ 
+                 </div>
+ 
+             </div>
+             <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
+ 
+                 <div class="container ">
+                     <h2>welcome to course</h2>
+                     <p>this course for you</p>
+ 
+ 
+                 </div>
+ 
+             </div>
+             <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
+ 
+                 <div class="container ">
+                     <h2>welcome to course</h2>
+                     <p>this course for you</p>
+ 
+ 
+                 </div>
+ 
+             </div>
+         </div>
+         <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+             data-bs-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Previous</span>
+         </a>
+         <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+             data-bs-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Next</span>
+         </a>
+     </div>
+ </section>
+ 
+ <section>
+ 
+   <div class="row my-3 container-fluid">
+       <div class="col-lg-6 col-md-6 col-12 text-center my-2">
+           <img class=" rounded-circle" width="45%" height="45%" src="../../assets/moh.png" alt=""
+               srcset="">
+       </div>
+ 
+       <div class="col-lg-6 col-md-6 col-12 my-3">
+           <p class="text-muted ">انا محمد كوراني،عندي شغف كبير بمجال علم النفس وتطوير الذات، بعد رحلة بحث وقراية في المجال ده لمده سنة ونص تقريبا اكتشفت ان اي مشكلة في حياة اي شخص مهما كانت، اساسها داخلى في النفس"إن الله لا يغير ما بقوم حتي يغيروا ما بأنفسهم" ومن هنا حابب اشارك مع الناس اي معرفة تطور وتحسن من حياتهم ولو بنسبة %1.</p>
+ 
+           <button class="btn btn-warning btn-outline-secondary text-dark ">show more</button>
+       </div>
+ 
+   </div>
+ 
+ 
+ </section>
+ 
+ 
+ <section >
+    <div *ngFor="let item of courses let i=index">
+        <div *ngIf="i<4">
+            <div class="row my-4" >
+                <div class="col-7 px-5 text-end">
+                    <h2 class="text-dark">{{item.name}}</h2>
+                      <div>
+                        <p #inputprg class="text-secondary  my-0 mx-2 d-inline ">{{item.description}}/p>
+                        <span #span1 (click)="showMore()" class="text-primary m-0">show more</span>
+                     </div>
+                    <button class="btn btn-secondary btn-list"  (click)="getcoursedetailes(item.id)" style="background-color: #2ebbe2">click</button>
+          
+                </div>
+                <div class="col-4  my-auto">
+                    <img class="w-lg-75 w-md-75 w-100" height="250PX" [src]="item.imgpath">
+                </div>
+            </div>
+          
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image:url('../../assets/img1.jpg') ;">
-
-                <div class="container ">
-                    <h2>welcome to course</h2>
-                    <p>this course for you</p>
-
-
-                </div>
-
-            </div>
-            <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
-
-                <div class="container ">
-                    <h2>welcome to course</h2>
-                    <p>this course for you</p>
-
-
-                </div>
-
-            </div>
-            <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
-
-                <div class="container ">
-                    <h2>welcome to course</h2>
-                    <p>this course for you</p>
-
-
-                </div>
-
-            </div>
-        </div>
-        <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
+       
     </div>
-</section>
-<!--
-<section>
+ 
+ </section>
 
-  <div class="row my-3 container-fluid">
-      <div class="col-lg-6 col-md-6 col-12 text-center my-2">
-          <img class=" rounded-circle" width="40%" src="https://randomuser.me/api/portraits/men/66.jpg" alt=""
-              srcset="">
+  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative" >
+    <div class="row row-cols-1 row-cols-xs-4 row-cols-sm-4 row-cols-lg-4 g-3">
+      <div class="col hp" *ngFor="let item of courses let i=index">
+        <div class="card h-70 shadow-sm" *ngIf="i<4">
+          <a href="#">
+            <img [src]="item.imgpath" height="250PX" class="card-img-top" alt="product.title" />
+          </a>
+  
+          <div class="label-top shadow-sm">
+            <a class="text-white" >asus</a>
+          </div>
+          <div class="card-body">
+            <div class="clearfix mb-3">
+              <span class="float-start badge rounded-pill bg-success">{{item.price}}$</span>
+  
+              <span class="float-end"><a  class="small text-muted text-uppercase aff-link">{{item.discount}}$</a></span>
+            </div>
+            <h5 class="card-title">
+              <a target="_blank" href="#">{{item.description}}</a>
+            </h5>
+  
+            <div class="d-grid gap-2 my-4">
+  
+              <a href="#" class="btn btn-warning bold-btn">اشتري الكورس</a>
+  
+            </div>
+            <div class="clearfix mb-1">
+  
+              <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
+  
+              <span class="float-end">
+                <i class="far fa-heart" style="cursor: pointer"></i>
+  
+              </span>
+            </div>
+        </div>
       </div>
-
-      <div class="col-lg-6 col-md-6 col-12 my-3">
-          <p class="text-muted ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolore mollitia
-              rem similique
-              vel cum porro maxime neque accusantium nam beatae, dolorum itaque nesciunt facilis quisquam,
-              amet modi impedit non
-              necessitatibus totam earum libero iure ex? Numquam eveniet sequi exercitationem repellendus!
-              Rerum totam reprehenderit,
-              provident molestiae quibusdam magnam illum possimus?</p>
-
-          <button class="btn btn-warning btn-outline-secondary text-dark ">show more</button>
-      </div>
-
+    </div>
   </div>
-
-
-</section>
-
-
-
--->
-<!--<section>
-  <div class="row my-3">
-      <div class="col-7 px-5 text-end">
-          <h2 class="text-dark">this is title</h2>
-          <div>
-              <p #inputprg class="text-secondary  my-0 mx-2 d-inline ">Lorem, ipsum dolor sit amet consectetur
-                  adipisicing elit.
-                  Quas natus itaque nisi harum enim quae,
-                  voluptatem quaerat beatae unde delectus obcaecati alias. </p>
-              <span #span1 (click)="showMore()" class="text-primary m-0">show more</span>
-          </div>
-          <button class="btn btn-secondary btn-list">click</button>
-
-      </div>
-      <div class="col-4  my-auto">
-          <img class="w-lg-75 w-md-75 w-100  " src="../assets/img2.png">
-      </div>
-  </div>
-
-  <div class="row my-4">
-      <div class="col-7 px-5 text-end">
-          <h2 class="text-dark">this is title</h2>
-          <div>
-              <p #inputprg2 class="text-secondary  my-0 mx-2 d-inline ">Lorem, ipsum dolor sit amet
-                  consectetur adipisicing elit.
-                  Quas natus itaque nisi harum enim quae,
-                  voluptatem quaerat beatae unde delectus obcaecati alias. </p>
-              <span #span2 (click)="showMore()" class="text-primary m-0">show more</span>
-          </div>
-          <button class="btn btn-secondary btn-list">click</button>
-
-      </div>
-      <div class="col-4  my-auto">
-          <img class="w-lg-75 w-md-75 w-100  " src="../assets/img1.jpg">
-      </div>
-  </div>
-
-  <div class="row my-4">
-      <div class="col-7 px-5 text-end">
-          <h2 class="text-dark">this is title</h2>
-          <div>
-              <p #inputprg class="text-secondary  my-0 mx-2 d-inline ">Lorem, ipsum dolor sit amet consectetur
-                  adipisicing elit.
-                  Quas natus itaque nisi harum enim quae,
-                  voluptatem quaerat beatae unde delectus obcaecati alias. </p>
-              <span #span1 (click)="showMore()" class="text-primary m-0">show more</span>
-          </div>
-          <button class="btn btn-secondary btn-list">click</button>
-
-      </div>
-      <div class="col-4  my-auto">
-          <img class="w-lg-75 w-md-75 w-100  " src="../assets/img1.jpg">
-      </div>
-  </div>
-
-  <div class="row my-4">
-      <div class="col-7 px-5 text-end">
-          <h2 class="text-dark">this is title</h2>
-          <div>
-              <p #inputprg class="text-secondary ">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Quas natus itaque nisi harum enim quae,
-                  voluptatem quaerat beatae unde delectus obcaecati alias. </p>
-              <span (click)="showMore()" class="text-primary">show more</span>
-          </div>
-          <button class="btn btn-secondary btn-list">click</button>
-
-      </div>
-      <div class="col-4  my-auto">
-          <img class="w-lg-75 w-md-75 w-100  " src="../assets/img1.jpg">
-      </div>
-  </div>
-
-</section>
-<section>
-  <div class="container-fluid">
-      <div class=" row ">
-          <div class="col-lg-3 col-md-6 col-12 my-3">
-              <div  class="card  card-bdy w-100">
-                  <img src="../assets/img1.jpg" class="card-img-top " alt="image">
-                  <div class="card-body card-clr">
-                      <h5 class="card-title">course for self-improvment</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the
-                          bulk of the card's content.</p>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12 my-3">
-              <div class="card  card-bdy w-100">
-                  <img src="../assets/img1.jpg" class="card-img-top " alt="image">
-                  <div class="card-body card-clr">
-                      <h5 class="card-title">course for self-improvment</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the
-                          bulk of the card's content.</p>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12 my-3">
-              <div class="card  card-bdy w-100">
-                  <img src="../assets/img1.jpg" class="card-img-top " alt="image">
-                  <div class="card-body card-clr">
-                      <h5 class="card-title">course for self-improvment</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the
-                          bulk of the card's content.</p>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12 my-3">
-              <div  class="card card-bdy w-100">
-                  <img src="../assets/img1.jpg" class="card-img-top " alt="image">
-                  <div class="card-body card-clr">
-                      <h5 class="card-title">course for self-improvment</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the
-                          bulk of the card's content.</p>
-                  </div>
-              </div>
-          </div>
-
-      </div>
-  </div>
-
-</section>
-<section>
-  <div class=" my-3 row justify-content-evenly gap-1 container-fluid ">
-      <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class=" row gap-0  my-2">
-              <div class="col-6">
-                  <img class="img rounded" height="100%" width="130%" src="../../assets/img1.jpg" />
-              </div>
-              <div class="col-6 border-section ">
-                  <h2 class="text-primary">first title</h2>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Sunt reprehenderit labore est cupiditate ut nam. </p>
-                  <button class="btn btn-secondary">click here</button>
-              </div>
-          </div>
-
-
-          <div class=" row gap-0 my-4">
-              <div class="col-6">
-                  <img class="img rounded" height="100%" width="130%" src="../../assets/img1.jpg" />
-              </div>
-              <div class="col-6 border-section ">
-                  <h2 class="text-primary">first title</h2>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Sunt reprehenderit labore est cupiditate ut nam. </p>
-                  <button class="btn btn-secondary">click here</button>
-              </div>
-          </div>
-      </div>
-
-
-      <div class=" col-lg-5 col-md-12 col-sm-12  my-2">
-          <div>
-              <img class="img rounded" width="100%" src="../../assets/img1.jpg" />
-          </div>
-          <div class=" border-section p-2">
-              <h2 class="text-primary">firstt title</h2>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Sunt reprehenderit labore est cupiditate ut nam. </p>
-              <button class="btn btn-secondary">click here</button>
-          </div>
-      </div>
-  </div>
-</section>
-
-
--->
-</main>
+</div>
+  
+ 
+ </main>
+ <app-comment></app-comment>
+ 
 
 
 

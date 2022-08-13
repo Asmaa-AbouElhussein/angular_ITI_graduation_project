@@ -24,6 +24,7 @@ data-bs-backdrop="static" data-bs-keyboard="false">اضافة كورس</button>
 <table class="table  table-bordered mt-3 table-striped table-success">
     <thead>
         <tr>
+          <th> كود الكورس</th>
             <th>اسم الكورس</th>
             <th>الوصف</th>
             <th>عدد ساعات الكورس</th>
@@ -32,13 +33,13 @@ data-bs-backdrop="static" data-bs-keyboard="false">اضافة كورس</button>
             <th>تاريخ البدء</th>
             <th>السعر</th>
             <th>الخصم</th>
-            <th>مسار الصوره</th>
             <th>الخيارات</th>
             
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let dataItem of coursesList">
+          <td>{{dataItem.id}}</td>
             <td>{{dataItem.name}}</td>
             <td>{{dataItem.description}}</td>
             <td>{{dataItem.numberofhours}}</td>
@@ -47,7 +48,6 @@ data-bs-backdrop="static" data-bs-keyboard="false">اضافة كورس</button>
             <td>{{dataItem.date}}</td>
             <td>{{dataItem.price}}</td>
             <td>{{dataItem.discount}}</td>
-            <td>{{dataItem.imgpath}}</td>
 
 
             

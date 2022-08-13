@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICoursesDetails } from '../models/classes';
 import { CoursesapiService } from '../services/coursesapi.service';
 
@@ -9,23 +10,36 @@ import { CoursesapiService } from '../services/coursesapi.service';
 })
 export class CouresesComponent implements OnInit {
 
-  constructor(private APIservice:CoursesapiService) { }
+  constructor(private APIservice:CoursesapiService,private router:Router,){ }
 
   courseList:ICoursesDetails[]=[];
-  //list:ICoursesDetails[]=[];
-  //res:IData[]=[];
+  course:ICoursesDetails={
+    id:0,
+    name:"",
+    imgpath:"",
+    price:0,
+    discount:0,
+    description:"",
+    numberofvideos:0,
+    numberofhours:0,
+    date:"",
+    code:""
+  };
 
   ngOnInit(): void {
     this.getAllCourses();
-    //console.log(this.courseList);
+    
   }
 
   getAllCourses(){
   this.APIservice.getAllCourses().subscribe(data=>{this.courseList=data,console.log(this.courseList)} );
-
-  //this.APIservice.getAllCourses().subscribe(d=>{this.list=d});
-  ;
-
    }
+   getcoursedetailes(id:any){
+    this.router.navigate(['/coursedetailes',id])
+  }
+  getcourse(id:any)
+  {
+    this.APIservice.getCourseByid(id).subscribe(data =>{this.course=data})
+  }
 
 }

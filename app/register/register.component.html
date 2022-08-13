@@ -1,28 +1,15 @@
-<div class="register-form">
+<div *ngIf="check;then hid;else hid2"></div>
+
+  <ng-template  #hid>
+    <div class="register-form">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group"style="margin:10px 0px;">
-        <label>الاسم الاول</label>
-        <input  type="text"formControlName="fristname"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['fristname'].errors }"/>
-        <div *ngIf="submitted && f['fristname'].errors" class="invalid-feedback">
-          <div *ngIf="f['fristname'].errors['required']">مطلوب</div>
-        </div>
-      </div>
-        <div class="form-group"style="margin:10px 0px;">
-          <label>الاسم الاخير</label>
-          <input  type="text"formControlName="lastname"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['lastname'].errors }"/>
-          <div *ngIf="submitted && f['lastname'].errors" class="invalid-feedback">
-            <div *ngIf="f['lastname'].errors['required']">مطلوب</div>
-          </div>
-        </div>
-  
-      <div class="form-group"style="margin:10px 0px;">
         <label>أسم المستخدم</label>
-        <input
-          type="text"
-          formControlName="username"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
-        />
+        <input [(ngModel)]="username"type="text"formControlName="username"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['username'].errors }"/>
+
+        <div class="text-danger" *ngIf="userexisterror">
+          مستخدم بالفعل
+         </div>
         <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
           <div *ngIf="f['username'].errors['required']">مطلوب</div>
           <div *ngIf="f['username'].errors['minlength']">
@@ -37,20 +24,26 @@
       <div class="form-group"style="margin:10px 0px;">
         <label>الايميل</label>
         <input
+        [(ngModel)]="email"
           type="text"
           formControlName="email"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
         />
+        <div class="text-danger"*ngIf="errorexist">
+          هذا الايميل موجود يمكنك تسجيل الدخول
+          </div>
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">مطلوب</div>
           <div *ngIf="f['email'].errors['email']">الايميل غير صحيح</div>
+          
         </div>
       </div>
-  
+         
       <div class="form-group"style="margin:10px 0px;">
         <label>كلمه السر</label>
         <input
+        [(ngModel)]="password"
           type="password"
           formControlName="password"
           class="form-control"
@@ -89,7 +82,7 @@
       </div>
       <div class="form-group"style="margin:10px 0px;">
         <label>العنوان</label>
-        <input  type="text"formControlName="address"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['address'].errors }"/>
+        <input [(ngModel)]="address" type="text"formControlName="address"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['address'].errors }"/>
         <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
           <div *ngIf="f['address'].errors['required']">مطلوب</div>
           <div *ngIf="f['address'].errors['minlength']">
@@ -102,7 +95,7 @@
       </div>
       <div class="form-group"style="margin:10px 0px;">
         <label>رقم المحمول</label>
-        <input  type="text"formControlName="phonenumber"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['phonenumber'].errors }"/>
+        <input [(ngModel)]="phone" type="text"formControlName="phonenumber"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['phonenumber'].errors }"/>
         <div *ngIf="submitted && f['phonenumber'].errors" class="invalid-feedback">
           <div *ngIf="f['phonenumber'].errors['required']">مطلوب</div>
           <div *ngIf="f['phonenumber'].errors['pattern']">الرقم غير صحيح</div>
@@ -111,11 +104,11 @@
      
     <div class="form-group form-radio"style="margin:10px 0px;">
         <span style="margin-left:40px ;">
-            <input id="male" type="radio" value="male" name="gender" formControlName="gender">
+            <input [(ngModel)]="gender" id="male" type="radio" value="male" name="gender" formControlName="gender">
             <label for="male"style="margin-right:10px ;">ذكر</label>
         </span>
         <span>
-            <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+            <input [(ngModel)]="gender" id="female" type="radio" value="female" name="gender" formControlName="gender">
             <label for="female" style="margin-right:10px ;">انثى</label>
         </span>
         <div *ngIf="isSet && f['gender'].errors" class="text-danger">
@@ -143,5 +136,22 @@
           إعاده تعيين
         </button>
       </div>
+      <button type="button" class="btn btn-primary"style="margin:1rem 8rem  0 0;"data-bs-toggle="modal"  data-bs-target="#loginModal" data-bs-backdrop="static" data-bs-keyboard="false"> لدى حساب</button>
+
     </form>
   </div>
+  </ng-template >
+  <ng-template #hid2>
+    <form #userregs="ngForm" novalidate >
+          <div class="form-group">
+              <label for="Name" class=" mb-1">الكود</label>
+              <input type="text" class="form-control" id="name"name="name" required [class.is-invalid]="user.invalid&&user.touched"  #user="ngModel" [(ngModel)]="code" placeholder="ادخل الكود">
+              <small class="text-danger" *ngIf="codeerror">الكود غير صحيح</small>
+              <div *ngIf="user.errors&&user.touched">
+                  <small class="text-danger" *ngIf="user.errors['required']">مطلوب</small>
+              </div>
+          </div> 
+          <button (click)="onSubmit()" class="btn btn-primary" style="float:left;margin-top: 2rem;">أرسال مره أخره</button>
+          <button type="submit" (click)="adduser()" [disabled]="userregs.form.invalid" [class.btn-success]="userregs.form.valid" [class.btn-danger]="userregs.form.invalid" class="btn mt-5">تحقق</button>   
+  </form>
+  </ng-template >

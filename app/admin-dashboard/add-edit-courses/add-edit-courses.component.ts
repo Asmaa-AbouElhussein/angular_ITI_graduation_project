@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICoursesDetails, IData } from 'src/app/models/classes';
+import { ApiService } from 'src/app/services/api.service';
 import { CoursesapiService } from 'src/app/services/coursesapi.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class AddEditCoursesComponent implements OnInit {
  //   numberofhours:string="";
  //   date:string="";
  
- constructor(private service:CoursesapiService) { }
+ constructor(private service:CoursesapiService,private sendbroadcast:ApiService) { }
 
 
  ngOnInit(): void {
@@ -52,7 +53,10 @@ export class AddEditCoursesComponent implements OnInit {
        "date": this.course.date,
        "code": this.course.code
        }
-      this.service.AddCourse(val1).subscribe((res: any)=>{console.log(res)} );}
+      this.service.AddCourse(val1).subscribe((res: any)=>{console.log(res)} );
+      var emalsend={subject:"تم أضافه كورس جديد",body:this.course.name}
+      this.sendbroadcast.sendbroadcast(emalsend).subscribe(res=>console.log(res));
+     }
    else{
      this.EditCourse(this.course);}
    

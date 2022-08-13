@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import {Userdata} from "../models/interfaces.file"
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   Ldata:Userdata= {} as Userdata
   submitted = false;
   invalidLogin:boolean=false
-  constructor(private formBuilder: FormBuilder,private http:HttpClient) {}
+  constructor(private formBuilder: FormBuilder,private http:HttpClient,private toastr:ToastrService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
       password:this.form.get("password")?.value},{responseType:"text"}
        ).subscribe({next:(data:string)=>{
         if(data !=null){
-        localStorage.setItem("jwt",data),this.invalidLogin=false}},error:(err)=>{console.error(err),this.invalidLogin=true}
+        localStorage.setItem("jwt",data),this.invalidLogin=false,this.toastr.success("تم التسجيل بنجاح")}},error:(err)=>{throw new Error(err),this.invalidLogin=true}
         
         })
    

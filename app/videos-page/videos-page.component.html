@@ -1,0 +1,81 @@
+
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-sm-auto col-sm-2 bg-light sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top DivToScroll DivWithScroll">
+               
+                <div class=" row m-0 p-0 " >
+<ul 
+                    class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
+                    
+                    <button   class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Dashboard">
+                 
+                    <div class="row m-0 p-0">
+                       
+                        <div class="col-xs-12 col-md-12 mt-1" >
+                    <h3>   الفيديوهات</h3>
+                        
+
+                           </div>
+                    </div>
+                </button>
+                
+                    <li *ngFor="let item of videos">
+                        <button  (click)="click1(item?.id)" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                            data-bs-placement="right" data-bs-original-title="Dashboard">
+                         
+                            <div class="row m-0 p-0">
+                               
+                                <div class="col-xs-3 col-md-4 mt-1" >
+                                    {{item.name}}
+                                   </div>
+                            </div>
+                        </button>
+                    </li>
+                  
+                </ul>
+                </div>
+                
+               
+            </div>
+        </div>
+        <div class="col-sm-auto col-sm-10">
+          
+            <div class="center" >
+                <div *ngIf="b==false" >
+                    <div *ngFor="let item of videos let i=index" >
+                        <div *ngIf="i==0">
+                            <video width="1000" height="500" controls >
+                       
+                                <source [src]="item.videopath" type="video/mp4" >
+                                
+                              </video>
+                             
+                              <h4> {{item.name}}</h4>
+                              <h4> {{item.description}}</h4>
+
+                        </div>
+                        
+                     
+                    </div>
+                </div>
+                <div *ngIf="b==true" >
+                    <div *ngFor="let item of videos">
+                        <div *ngIf="item.id==idvideo">
+                            <video width="1000" height="500" controls >
+                          
+                                <source [src]="item.videopath" type="video/mp4" >
+                                
+                              </video>
+                              <h4> {{item.name}}</h4>
+                              <h4> {{item.description}}</h4>
+                        </div>
+                      
+                    </div>
+                </div>
+               
+            </div>
+         
+    </div>
+</div>

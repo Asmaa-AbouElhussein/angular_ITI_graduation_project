@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { videodata } from 'src/app/models/interfaces.file';
 import { SharedserviceService } from 'src/app/services/sharedservice.service';
 import { VideoFormComponent } from '../video-form/video-form.component';
@@ -18,7 +19,8 @@ export class TestComponent implements OnInit,OnChanges {
      selectedList:videodata[]=[]
      ModalTitle!:string
     
-  constructor(private http:HttpClient,private shared:SharedserviceService) { }
+  constructor(private http:HttpClient,
+    private shared:SharedserviceService,private toastr:ToastrService) { }
   
   ngOnChanges(changes: SimpleChanges): void {
     console.log("yy");
@@ -77,7 +79,7 @@ export class TestComponent implements OnInit,OnChanges {
     if(confirm('Are you sure??'))
     {
     this.shared.Deletevideo(item.id).subscribe(data=>{
-      console.log(item);
+      this.toastr.success("تم المسح بنجاح")
      
       this.showData();
     })
@@ -85,7 +87,8 @@ export class TestComponent implements OnInit,OnChanges {
       
       this.http.delete("http://localhost:29069/api/Video_Upload",{params:new HttpParams().set("filepath",item.videopath)}
       ).subscribe(data=>
-      console.log(data)
+       console.log(data)
+       
       )
     
     

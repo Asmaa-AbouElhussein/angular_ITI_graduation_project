@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { observable, Observable, Subscription, throwError } from 'rxjs';
 import { videodata, videopath } from 'src/app/models/interfaces.file';
 import { SharedserviceService } from 'src/app/services/sharedservice.service';
@@ -20,15 +21,16 @@ export class VideoFormComponent implements OnInit, OnDestroy {
   err:boolean=false;
   err2:boolean=false;
   @Input() FKS!: number[]
-  constructor(private http: HttpClient, private shared: SharedserviceService) { }
+  constructor(private http: HttpClient, private shared: SharedserviceService
+    ,private toastr:ToastrService) { }
   
+    ngOnInit(): void {
+     
+     
+    }
 
 
 
-  ngOnInit(): void {
-   
-   
-  }
 
 
   async onFormSubmit() {
@@ -48,7 +50,7 @@ export class VideoFormComponent implements OnInit, OnDestroy {
         var formData = new FormData
         formData.append('Files', this.file)
         this.checkSub= this.http.post('http://localhost:29069/api/Video_Upload', formData).
-          subscribe((data) => {
+          subscribe({next:(data) => {
             console.log(data),
             this.res = data as videopath[];
             if (this.res.length > 0) {
@@ -58,19 +60,19 @@ export class VideoFormComponent implements OnInit, OnDestroy {
               this.VideoPath = this.res.map((e) => { return e.name })
 
 
-              console.log(this.VideoPath);
+             
 
               if (this.VideoPath != undefined && this.VideoPath.length > 0) {
                 for (const item of this.VideoPath) {
 
 
                   this.datalist.videopath = item
-                  console.log("vidpath");
+                 
 
                   this.checkSub = this.shared.Addvideo(this.datalist).subscribe(
                     (data) => console.log(data + "this is addvideo")
                   )
-                  alert("Added");
+                  this.toastr.success("تم الاضافة بنجاح");
                   this.err2=false;
                 }
               }
@@ -84,8 +86,8 @@ export class VideoFormComponent implements OnInit, OnDestroy {
 
 
 
-          }, error => throwError(() => new Error("error happened" + error)
-          ))
+          },error: error => throwError(() => new Error("error happened" + error)
+          )})
 
         this.err=false;
 

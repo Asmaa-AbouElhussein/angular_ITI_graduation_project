@@ -16,3 +16,31 @@ export interface Userdata {
     username:string,
     password:string
 }
+
+export interface UserComment {
+    
+    Email:string,
+    comment:string
+}
+   
+export interface commentData {
+    
+    comment:string,
+    userName:string,
+    avatarpath:string,
+    date:string
+}
+    
+export interface  aboutusEmail {
+    
+    Email:string,
+    body:string,
+    name:string,
+}
+    
+export interface  codeData {
+    
+    email:string,
+    code:string,
+    courseid:number,
+}

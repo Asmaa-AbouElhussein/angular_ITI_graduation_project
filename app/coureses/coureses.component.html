@@ -1,12 +1,12 @@
 <!-- start  section  -->
-<div class="container d-flex align-items-center flex-column" >
+<!-- <div class="container d-flex align-items-center flex-column" >
     <div class="section-contnet text-center py-4">
         <h2 class="py-2 text-danger">Courses</h2>
     </div>
-    <div class="section-cards row  py-2 my-2 " >
+    <div class="section-cards row  py-2 my-2 " > -->
         <!-- <div ></div> -->
         <!-- <ng-template #Courses *ngIf="courseList!=null"> -->
-            <div class="col py-2 col-md-3" *ngFor="let item of courseList">
+            <!-- <div class="col py-2 col-md-3" *ngFor="let item of courseList">
                 <div class="card mw-100   align-items-center" appCardHover >
                     <div class="mh-100">
                         <img class="card-img-top " [src]="item.imgpath" alt="Card image cap">
@@ -16,8 +16,9 @@
                         <h4 class="card-text">الوصف: {{item.description}}</h4>
                         <h5 class="card-text">التخفيض: {{item.discount | percent}}</h5>
                         <h3 class="card-title">السعر: {{item.price}}</h3>
+                        <button class="btn btn-primary mt-3" (click)="getcoursedetailes(item.id)"> التفاصيل والشراء</button> -->
                         <!-- <button class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#modal1" >التفاصيل</button>  -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">
                             التفاصيل
                           </button>
                           
@@ -26,35 +27,86 @@
                           </div>
                           
                     </div>
-                </div>
-                <div class="container-fluid modal fade " id="modal1" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal-tittle">التفاصيل</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close" style="float: left;"></button>
+                </div> -->
+
+                <!-- ////////////////////////////// -->
+                <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative" >
+                    <div class="row row-cols-1 row-cols-xs-4 row-cols-sm-4 row-cols-lg-4 g-3">
+                      <div class="col hp" *ngFor="let item of courseList let i=index">
+                        <div class="card h-70 shadow-sm" >
+                          <a href="#">
+                            <img [src]="item.imgpath" height="250px" class="card-img-top" alt="product.title" />
+                          </a>
+                  
+                          <div class="label-top shadow-sm">
+                            <a class="text-white" href="#">asus</a>
+                          </div>
+                          <div class="card-body">
+                            <div class="clearfix mb-3">
+                              <span class="float-start badge rounded-pill bg-success">{{item.price}}$</span>
+                  
+                              
                             </div>
+                            <h5 class="card-text">التخفيض: {{item.discount | percent}}</h5>
+                            <h5 class="card-title">
+                              <p >{{item.description}}</p>
+                            </h5>
+                  
+                            <div class="d-grid gap-2 my-4">
+                  
+                              <button  class="button1" (click)="getcoursedetailes(item.id)" style="background-color: #2ebbe2">التفاصيل والشراء</button>
+                              <button type="button" (click)="getcourse(item.id)" class="button1" data-bs-toggle="modal" data-bs-target="#VideoModal" style="background-color: #2ebbe2">
+                                التفاصيل
+                              </button>
+                              
                             <div class="modal-body">
-                                <!-- <div class="ml-3 bd-highlight " style="width: 40%;" >
-                                     <img [src]="item.imgpath" height="250px;" width="200px;" *ngIf="item.imgpath!=null">  
-                                    <img class="card-img-top " src="{{item.imgpath}}" alt="Card image cap">
                                 
-                                </div>  -->
-                                <div class="ml-3 bd-highlight" style="width: 60%;" >
-                                    <h3 class="card-title">اسم الكورس: {{item.name}}</h3>
-                                    <h4 class="card-text">الوصف: {{item.description}}</h4>
-                                    <h5 class="card-text">التخفيض: {{item.discount | percent}}</h5>
-                                    <h3 class="card-title">السعر: {{item.price}}</h3>
-                                    <h3 class="card-title">الكود: {{item.code}}</h3>
-                                    <h3 class="card-title">عدد الساعات: {{item.numberofhours}}</h3>
-                                    <h3 class="card-title">عدد المقاطع: {{item.numberofvideos}}</h3>
-                                </div>
+                              </div>
                             </div>
-                            
+                            <div class="clearfix mb-1">
+                  
+                              <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
+                  
+                              <span class="float-end">
+                                <i class="far fa-heart" style="cursor: pointer"></i>
+                  
+                              </span>
+                            </div>
                         </div>
+                      </div>
+                  
+
+
+                <!-- //////////////////////// -->
+                <div class="modal fade" id="VideoModal" data-bs-static="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="max-width: 50%;">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"> تفاصيل الكورس</h5>
+                          <button type="button"  class="close" data-bs-dismiss="modal" aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 product_img">
+                                    <img [src]="course.imgpath" height="300px" class="img-responsive" width="100%" >
+                                </div>
+                                <div class="col-md-6 product_content">
+                                    <h4><span>{{course.name}}</span></h4>
+                                  
+                                    <p>{{course.description}}.</p>
+                                    <h3 class="cost">السعر:<span>{{course.price}} $</span> </h3>
+                                    <h3 >الخصم: {{  (course.discount/100)|percent}}</h3>
+                                   
+                                </div>
+                              
+                        </div>
+                       
+                      </div>
                     </div>
-                    
-                </div>
+                  </div>
             </div>
 
             
@@ -65,7 +117,7 @@
                 <!-- <h4 class="text-danger text-center">  </h4>
 
             </div>
-        </ng-template> --> -->
+        </ng-template> -->
         <!-- <div class="my-3 nav justify-content-center">
             <button class="btn btn-success mx-3" (click) = "discount()"> Products With Discount   </button>
             <button class="btn btn-danger mx-3" (click) = "renderValues()"> All Products   </button>
