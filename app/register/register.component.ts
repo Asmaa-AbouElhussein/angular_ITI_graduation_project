@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Output,EventEmitter, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { min } from 'rxjs';
 import Validation from '../models/classes';
 import {Userdata} from "../models/interfaces.file"
@@ -25,11 +26,15 @@ code:string="";
 correctcode:string="";
 codeerror:boolean=false;
   Udata:Userdata={} as Userdata
-  constructor(private formBuilder: FormBuilder,private http:HttpClient,private service:SharedserviceService,private sendmail:ApiService) {}
+  @Output() Isadmin:EventEmitter<boolean>=new EventEmitter()
+  @Output() sendUname:EventEmitter<boolean>=new EventEmitter()
+
+  constructor(private formBuilder: FormBuilder,private http:HttpClient,private service:SharedserviceService,private sendmail:ApiService,private toastr:ToastrService) {}
   resgiterlist:any[]=[];
 
   ngOnInit(): void {
-this.getallregister();
+    this.service.Getallregister().subscribe({next:data=>{this.resgiterlist=data},error:(err)=>{throw new Error(err)}})
+
     this.form = this.formBuilder.group(
       {
         
@@ -51,21 +56,6 @@ this.getallregister();
           ],
         ],
         confirmPassword: ['', Validators.required],
-        address: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-           
-          ],
-        ],
-        phonenumber: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(/^(01)(0|1|2|5)[0-9]{8}$/),
-          ],
-        ],
         gender: ['male', [Validators.required]],
         acceptTerms: [false, Validators.requiredTrue],
        
@@ -80,9 +70,7 @@ this.getallregister();
     return this.form.controls;
   }
   username:string="";
-  address:string="";
   password:string="";
-  phone:string="";
   email:string="";
   gender:string="";
   avatar:string="";
@@ -91,7 +79,7 @@ errorexist:boolean=false;
 userexist:boolean=false;
 userexisterror:boolean=false;
   onSubmit(): void {
-   this.getallregister();
+
     this.submitted = true;
     this.isSet = true;
      this.exist=this.resgiterlist.some(element=> element.email===this.email);
@@ -125,11 +113,9 @@ userexisterror:boolean=false;
    else{
     this.correctcode=String(Math.floor(100000+Math.random()*900000));
     var val={mailto:this.email,subject:"كود التحقق",code:this.correctcode};
-this.sendmail.sendemailcode(val).subscribe(res=>{
-  console.log(res);
-});
-console.log(val);
-console.log(this.correctcode);
+    this.sendmail.sendemailcode(val).subscribe({next:res=>this.toastr.success("تم ارسال كود التحقق بنجاح"),
+    error:(err)=>{throw new Error(err)}});
+
 
 
       this.check=false;
@@ -141,40 +127,50 @@ adduser(){
   var objectuser=
   {
     username:this.username,
-    address:this.address,
     password:this.password,
-    phonenumber:this.phone,
     email:this.email,
     gender:this.gender,
     avatarpath:this.avatar
   }
   if(this.correctcode==this.code){
-    
-    
       this.http.post("http://localhost:29069/api/registration",objectuser).subscribe(
-        data=>{if (data!=null) {
-             
-             
+        {next:data=>{if (data!=null) {
           this.http.post("http://localhost:29069/api/registration/UTokin",
           this.Udata={username:this.form.get("username")?.value,
           password:this.form.get("password")?.value},{responseType:"text"}
-          ).subscribe(data=>localStorage.setItem("jwt",data)
-          )
-        }
-        })
-        // window.location.reload();
-  }  
-  else{
-this.codeerror=true;
-  }  
+          ).subscribe({next:data=>{localStorage.setItem("jwt",data)
+          if(data !=null){
+            localStorage.setItem("jwt",data)
+            var headers=new HttpHeaders().set
+            ("Authorization", `Bearer ${localStorage.getItem("jwt")}`)
+          this.http.get("http://localhost:29069/api/registration/Auth",{headers,responseType:"text"}).
+          subscribe({next:data=>{ 
+          sessionStorage.setItem("Email",JSON.parse(data)[0]),
+          sessionStorage.setItem("Username",JSON.parse(data)[1]),this.sendUname.emit(true),
+          sessionStorage.setItem("Role",JSON.parse(data)[2])
+          if(sessionStorage.getItem("Role")=='Admin'){this.sendData()};
+          this.toastr.success("تم التسجيل بنجاح")
+        },error:(err)=>{throw new Error(err)}})
+      }}
+    ,error:(err)=>{throw new Error(err)}})
+      }
+      },error:(err)=>{throw new Error(err)}})
+    }  
+    else{
+  this.codeerror=true;
+    }  
+        
+        
+        
+        
   
 }
   onReset(): void {
     this.submitted = false;
     this.form.reset();
   }
-  getallregister(){
-    this.service.Getallregister().subscribe(data=>{this.resgiterlist=data});
-
+  sendData(){
+    this.Isadmin.emit(true)
   }
+  
 }

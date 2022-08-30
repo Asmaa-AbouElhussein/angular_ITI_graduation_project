@@ -1,6 +1,6 @@
 
 <!-- Button trigger modal -->
-<button type="button" (click)="add()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VideoModal">
+<button type="button" (click)="add()" class="btn  m-2 text-center bt" data-bs-toggle="modal" data-bs-target="#VideoModal">
  اضافه فيديو جديد
   </button>
   
@@ -26,26 +26,27 @@
     </div>
   </div>
 
-<table class="table  table-bordered mt-3 table-striped table-success">
-    <thead>
+<table class="table  table-bordered mt-3 ">
+    <thead class=" text-center" style="background:#2b6777 ;color:white">
          <tr>
             <th> الاسم</th>
             <th> الوصف</th>
             <th> كود العنوان</th>
+            <th> الخيارات</th>
          </tr>
     </thead>
     <tbody>
         <ng-container  *ngFor="let item of selectedList">
 
-            <tr class="table-active">        
+            <tr class="m-1">        
                <td>{{item.name}}</td>
-               <td>{{item.description}}</td>
-               <td>{{item.courses_Categoryid}}</td>
-                <td>
-                    <button class="btn btn-secondary" data-bs-toggle="modal"  data-bs-target="#VideoModal" (click)="Update(item.id)">update</button>
-                    <button class="btn btn-danger" (click)="delete(item)">delete</button>
-                           
-                </td>
+               <td >{{item.description}}</td>
+               <td >{{item.courses_Categoryid}}</td>
+               <td >
+                <button class="btn btn-outline-success text-dark m-1" data-bs-toggle="modal"  data-bs-target="#VideoModal" (click)="Update(item.id)">تعديل</button>
+                <button class="btn btn-outline-danger m-1" (click)="delete(item)">حذف</button>
+                       
+            </td>
               </tr>
 
         </ng-container>

@@ -12,13 +12,13 @@ div.center {
     cursor: pointer;
     outline: none;
     color: #fff;
-    background-color: #2ebbe2;
+    background-color: #2b6777;
     border: none;
     border-radius: 15px;
     
     }
     
-    .button1:hover {background-color: #239cbe}
+    .button1:hover {background-color: #2a90ac}
 
     .button1:active {
     background-color: #236375;
@@ -48,23 +48,59 @@ div.center {
         left: -1px;
         padding: 10px 7px 5px;
     }
-    @media (max-width: 538.4px){
-        .DivWithScroll{ overflow-y: hidden;}
-    }
+    // @media (max-width: 538.4px){
+    //     .DivWithScroll{ overflow-y: hidden;}
+    // }
     
     // .DivWithScroll{
     //     // height:500px;
     //     overflow:scroll;
     //     overflow-x:hidden;
     // }
-    .DivWithScroll{
-        height:120px;
-        overflow:scroll;
-        // overflow-x:hidden;
-    }
+    // .DivWithScroll{
+    //     height:120px;
+    //     overflow:scroll;
+    //     // overflow-x:hidden;
+    // }
     // .row{
     //     margin-top: 30px;
     // }
+    .DivWithScroll{
+        height:650px;
+     overflow:scroll;
+      overflow-x:hidden;
+ }
+ @media screen and (max-width:575.2px) {
+     
+     .DivWithScroll{
+          height:120px ;
+         overflow:scroll;
+          overflow-y:hidden;
+     }
+ }
     .product_view .modal-dialog{max-width: 800px; width: 100%;}
     .pre-cost{text-decoration: line-through; color: #a5a5a5;}
     .space-ten{padding: 10px 0;}
+
+
+    .d{
+            color:#2b6777;
+              
+    }
+    
+//     .d:hover{
+//               color:#489cb3;
+       
+// }
+
+.b{
+    width:150px;
+}
+.b:hover{
+    background-color: #bdd5dc;
+}
+.row1{
+ 
+    margin-top: 150px;
+ 
+}

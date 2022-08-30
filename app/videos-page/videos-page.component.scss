@@ -9,11 +9,6 @@
     padding: 10px 7px 5px;
 }
 
-.DivWithScroll{
-    height:500px;
-    overflow:scroll;
-    overflow-x:hidden;
-}
 // .row{
 //     margin-top: 30px;
 // }
@@ -24,3 +19,33 @@ div.center {
     text-align: center;
   }
 
+  .DivWithScroll{
+    height:650px;
+ overflow:scroll;
+  overflow-x:hidden;
+}
+@media screen and (max-width:575.2px) {
+ 
+ .DivWithScroll{
+      height:120px ;
+     overflow:scroll;
+      overflow-y:hidden;
+ }
+}
+
+
+.b{
+    width:150px;
+}
+.b:hover{
+    background-color: #bdd5dc;
+}
+
+.d{
+    color:#2b6777;
+      
+}
+.row{
+ 
+    margin-top: 150px;
+}

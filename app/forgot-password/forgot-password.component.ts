@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.service';
 import { SharedserviceService } from '../services/sharedservice.service';
 
@@ -26,7 +27,7 @@ password:string="";
 emailform:boolean=true;
 codeform:boolean=false;
 passwordform:boolean=false;
-  constructor(private formBuilder: FormBuilder,private service:SharedserviceService,private sendmail:ApiService) { }
+  constructor(private formBuilder: FormBuilder,private service:SharedserviceService,private sendmail:ApiService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -62,11 +63,10 @@ passwordform:boolean=false;
        else{
         this.correctcode=String(Math.floor(100000+Math.random()*900000));
         var val={mailto:this.email,subject:"كود التحقق",code:this.correctcode};
-    this.sendmail.sendemailcode(val).subscribe(res=>{
-      console.log(res);
+        this.sendmail.sendemailcode(val).subscribe({next:res=>{this.toastr.success("تم ارسال كود التحقق بنجاح");
       this.emailform=false;
       this.codeform=true;
-    });
+    },error:(err)=>{throw new Error(err)}});
   
   }
   }
@@ -92,15 +92,14 @@ passwordform:boolean=false;
       password:this.password,
       email:this.email
     };
-    console.log("emailandcode"+this.password+this.email);
-    this.service.updatepassword(objupdate).subscribe(res=>{console.log(res)
-    alert("تم تحديث كلمه السر")
-    });
+    this.service.updatepassword(objupdate).subscribe({next:res=>this.toastr.success("تم تحديث كلمه المرور بنجاح")
+  ,error:(err)=>{throw new Error(err)}});
        
 
   }
   getallregister(){
-    this.service.Getallregister().subscribe(data=>{this.resgiterlist=data});
+    this.service.Getallregister().subscribe({next:data=>{this.resgiterlist=data},
+      error:(err)=>{throw new Error(err)}});
 
   }
 }

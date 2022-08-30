@@ -6,6 +6,7 @@
         <input
           type="text"
           formControlName="username"
+          [(ngModel)]="user"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
         />
@@ -34,6 +35,8 @@
         </button>
       </div>
       <button type="button" class="btn btn-primary"style="margin:1rem 8rem  0 0;"data-bs-toggle="modal"  data-bs-target="#registermodal" data-bs-backdrop="static" data-bs-keyboard="false">انشاء حساب</button>
+      <br>
+      <a routerLink="/password" style=" text-align: center; text-decoration: none; margin-right: 35%;margin-top:20px;">هل نسيت كلمه السر؟</a>
     </form>
   </div>
   

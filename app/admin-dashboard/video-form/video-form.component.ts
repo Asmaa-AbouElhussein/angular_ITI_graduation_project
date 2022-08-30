@@ -51,7 +51,7 @@ export class VideoFormComponent implements OnInit, OnDestroy {
         formData.append('Files', this.file)
         this.checkSub= this.http.post('http://localhost:29069/api/Video_Upload', formData).
           subscribe({next:(data) => {
-            console.log(data),
+           
             this.res = data as videopath[];
             if (this.res.length > 0) {
 
@@ -69,10 +69,10 @@ export class VideoFormComponent implements OnInit, OnDestroy {
                   this.datalist.videopath = item
                  
 
-                  this.checkSub = this.shared.Addvideo(this.datalist).subscribe(
-                    (data) => console.log(data + "this is addvideo")
-                  )
-                  this.toastr.success("تم الاضافة بنجاح");
+                  this.checkSub = this.shared.Addvideo(this.datalist).subscribe({
+                    next:(data) =>{ this.toastr.success("تم الاضافة بنجاح");} 
+                ,error:(err)=>{throw new Error(err)}})
+                 
                   this.err2=false;
                 }
               }

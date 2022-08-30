@@ -39,10 +39,11 @@ this.ActivateAddandEdit=true;
   delete(item:any){
     if(confirm('هل تريد مسح العنصر ؟؟'))
     {
-    this.service.deltecategory(item.id).subscribe(data=>{
-      alert(data.toString());}); 
+    this.service.deltecategory(item.id).subscribe({next:data=>{
+      },error:(err)=>{throw new Error(err)}}); 
+      window.location.reload();
+
     }
-    window.location.reload();
   }
   ngOnInit(): void {
     this.refreshdata();
@@ -50,7 +51,8 @@ this.ActivateAddandEdit=true;
   }
   refreshdata()
   {
-    this.service.getallcategory().subscribe(data=>{this.categorylist=data})
+    this.service.getallcategory().subscribe({next:data=>{this.categorylist=data.sort((a,b)=>(a.course_Detailesid<b.course_Detailesid?-1:1));},
+    error:(err)=>{throw new Error(err)}})
   }
 
 }

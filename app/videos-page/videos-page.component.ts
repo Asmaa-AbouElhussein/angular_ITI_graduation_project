@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SharedserviceService } from '../services/sharedservice.service';
 import { ApiService } from '../services/api.service';
 import { ICourses_category } from '../models/classes';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-videos-page',
@@ -19,20 +20,16 @@ export class VideosPageComponent implements OnInit {
   b:boolean=false;
   categories:ICourses_category[]=[];
   
-  constructor(private rout:ActivatedRoute,private router:Router,private service:SharedserviceService,private apiservice:ApiService ,private sharedservice:SharedserviceService) { }
+  constructor(private rout:ActivatedRoute, private _location: Location,private router:Router,private service:SharedserviceService,private apiservice:ApiService ,private sharedservice:SharedserviceService) { }
 
   ngOnInit(): void {
     
-    this.rout.paramMap.subscribe((pramas:ParamMap)=>{this.id=pramas.get("id");})
-    // console.log(this.id);
-  //   this.apiservice.getallcategory().subscribe(cats => {this.categories =cats})
-  //  this.categories.filter(w => w.course_Detailesid =this.id);
-this.service.GetVideoBYFK(this.id).subscribe(data =>{this.videos=data})
-//  this.sharedservice.Getvideos().subscribe(vids =>{this.videos=vids,console.log(this.videos)})  // selectedList =[{},{},{},{}]
+    this.rout.paramMap.subscribe({next:(pramas:ParamMap)=>{this.id=pramas.get("id");},
+    error:(err)=>{throw new Error(err)}})
+    
+this.service.GetVideoBYFK(this.id).subscribe({next:data =>{this.videos=data},
+  error:(err)=>{throw new Error(err)}})
 
-      //  this.videos= this.selectedList.filter(v =>{v.courses_Categoryid=this.categories[0].id})
-
-     // this.getfirstvideo();
      
   }
   
@@ -40,7 +37,11 @@ this.service.GetVideoBYFK(this.id).subscribe(data =>{this.videos=data})
  {
  this.b=true;
   this.idvideo=id;
-  console.log(this.idvideo);
+ 
  }
+
+ backClicked() {
+  this._location.back();
+}
 
 }

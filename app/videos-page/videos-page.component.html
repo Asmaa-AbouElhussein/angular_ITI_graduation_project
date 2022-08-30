@@ -1,8 +1,8 @@
 
 <div class="container-fluid">
     <div class="row ">
-        <div class="col-sm-auto col-sm-2 bg-light sticky-top">
-            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top DivToScroll DivWithScroll">
+        <div class="col-sm-auto col-sm-2 bg-light ">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center  DivToScroll DivWithScroll">
                
                 <div class=" row m-0 p-0 " >
 <ul 
@@ -12,27 +12,30 @@
                     data-bs-placement="right" data-bs-original-title="Dashboard">
                  
                     <div class="row m-0 p-0">
-                       
-                        <div class="col-xs-12 col-md-12 mt-1" >
-                    <h3>   الفيديوهات</h3>
-                        
+                        <!-- <div class="col-xs-1 m-0 p-0 col-md-4" style="color:#2b6777"> 
+                            <mat-icon >ondemand_video</mat-icon>
+                        </div> -->
+                        <div class="col-xs-3 col-md-4 mt-1" >
+                    <h3 style="color: #2b6777;">   الفيديوهات</h3>
 
                            </div>
                     </div>
                 </button>
                 
                     <li *ngFor="let item of videos">
-                        <button  (click)="click1(item?.id)" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                        <button  (click)="click1(item?.id)" class="nav-link py-3 px-2 b" title="" data-bs-toggle="tooltip"
                             data-bs-placement="right" data-bs-original-title="Dashboard">
                          
                             <div class="row m-0 p-0">
                                
-                                <div class="col-xs-3 col-md-4 mt-1" >
+                                <div class="col-xs-12 col-md-12 mt-1 d" >
                                     {{item.name}}
                                    </div>
                             </div>
                         </button>
                     </li>
+                    <button (click)="backClicked()" class="btn btn-success">العوده</button>         
+
                   
                 </ul>
                 </div>
@@ -46,7 +49,7 @@
                 <div *ngIf="b==false" >
                     <div *ngFor="let item of videos let i=index" >
                         <div *ngIf="i==0">
-                            <video width="1000" height="500" controls >
+                            <video width="80%" height="500px" controls >
                        
                                 <source [src]="item.videopath" type="video/mp4" >
                                 
@@ -63,7 +66,7 @@
                 <div *ngIf="b==true" >
                     <div *ngFor="let item of videos">
                         <div *ngIf="item.id==idvideo">
-                            <video width="1000" height="500" controls >
+                            <video width="80%" height="500px" controls >
                           
                                 <source [src]="item.videopath" type="video/mp4" >
                                 

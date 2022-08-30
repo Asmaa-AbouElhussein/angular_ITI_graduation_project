@@ -1,66 +1,129 @@
- <!----> <div class="modal fade" id="registermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<header class="container-fluid sticky-top">
+  <div class="row  pt-1 pb-1 " style="background-color: #2b6777;">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-start mb-2 mb-lg-0 text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+      <div class="navSocialMedia d-contents;  col-7">
+        <nav class="nav nav-pills flex-column flex-sm-row  col-lg-5 col-md-6 col-sm-6" style="font-size:2rem;">
+          <a class="socialIcons flex-sm-fill text-sm-center nav-link  " href="https://www.facebook.com/MOHAMEDKOORANY "
+            target="_blank"><i class="bi bi-facebook" id="ico"></i></a>
+          <a class="socialIcons flex-sm-fill text-sm-center nav-link" href="https://wa.me/01122650488"
+            target="_blank"><i class="bi bi-whatsapp" id="ico"></i></a>
+          <a class="socialIcons flex-sm-fill text-sm-center nav-link " href="https://www.instagram.com/iamkorany/"
+            target="_blank"><i class="bi bi-instagram" id="ico"></i></a>
+          <a class="socialIcons flex-sm-fill text-sm-center nav-link "
+            href="https://www.youtube.com/channel/UCicvHnXDDfHj4FI6sbb1rGg" target="_blank"><i class="bi bi-youtube"
+              id="ico"></i></a>
+          <a class="socialIcons flex-sm-fill text-sm-center nav-link " href="https://www.tiktok.com/@mohamedkoranyy "
+            target="_blank"><i class="bi bi-tiktok" id="ico"></i></a>
+        </nav>
+      </div>
+      <div *ngIf="login;then head1;else head2"></div>
+
+      <ng-template #head1>
+        <nav class=" text-end flex-column flex-sm-row col-3" style="margin: auto;">
+          <button type="button" class="loginBtn btn btn-outline-light m-2" (click)="logout()">تسجيل خروج</button>
+        </nav>
+      </ng-template>
+      <ng-template #head2>
+        <nav class="d-flex  text-sm-center flex-column flex-sm-row col-3" style="margin: auto;">
+          <button type="button" class="loginBtn btn btn-outline-light m-2" data-bs-toggle="modal"
+            data-bs-target="#loginModal">تسجيل الدخول</button>
+          <button type="button" class="loginBtn btn btn-outline-warning m-2" data-bs-toggle="modal"
+            data-bs-target="#registermodal">تسجيل جديد</button>
+        </nav>
+      </ng-template>
+
+    </div>
+  </div>
+  <div class="d-flex row pt-3 pb-3" style="background-color:#c8d8e4;">
+    <div class="col-4  d-flex align-items-center">
+      <div class="col-7 col-sm-7 d-flex">
+        <ng-container *ngIf="Username !=null">
+          <span id="titl1" routerLink="/setting"><i class="col-1 col-sm-1 bi bi-gear text-secondry" ></i></span>
+          <span id="titl1" class="welcome text-dark"> مرحبا {{Username}} </span>
+          
+
+        </ng-container>
+      </div>
+      <div class="col-5 col-sm-5">
+        <img src="../../assets/logo2.jpeg" style="width:40px; height:45px;background-color:white;cursor: pointer;margin:  0 auto;"
+          class=" p-1 rounded " routerLink="/home">
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="collapseMenu ">
+        <div class="btnMenu">
+          <button type="button" class="text-center btn btn-outline-light" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+          <h6 style="color:#222 ;">القائمة</h6>
+        </div>
+        <!-- <hr> -->
+        <div id="collapseBasic" [collapse]="isCollapsed">
+          <div class="menuCollapse">
+            <ul class="listItems">
+              <li class="card-body" id="titl" routerLink="/home">الرئيسيه</li>
+              <li class="card-body" id="titl" routerLink="/courses">الدورات </li>
+              <li class="card-body" id="titl" routerLink="/about">عن الموقع</li>
+              <li class="card-body" id="titl" routerLink="/contact">اتصل بنا</li>
+              <ng-container *ngIf="isAdmin">
+                <li id="titl" routerLink="/admin">المسؤول</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="menu" [class.menuClass]="menuVariable">
+        <ul class="menuItems">
+          <li id="titl" routerLink="/home">الرئيسيه</li>
+          <li id="titl" routerLink="/courses">الدورات </li>
+          <li id="titl" routerLink="/about">عن الموقع</li>
+          <li id="titl" routerLink="/contact">اتصل بنا</li>
+          <ng-container *ngIf="isAdmin">
+            <li id="titl" routerLink="/admin">المسؤول</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="modal fade" id="registermodal" tabindex="-1" data-bs-backdrop="static" data-bs-static="true"
+  data-bs-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered mdal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">تسجيل حساب جديد</h5>
-        <button type="button" class="close bg-warning rounded"style="border:1px solid black" data-bs-dismiss="modal" aria-label="Close">
+        <button type="button" (click)="refresh()" class="close bg-warning rounded" style="border:1px solid black"
+          data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <app-register>
-      </app-register>
-    </div>
+        <app-register (Isadmin)="checkAdminState($event)" (sendUname)="DisplayName($event)">
+        </app-register>
+      </div>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-static="true"
+  data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered mdal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">تسجيل  دخول</h5>
-        <button type="button" class="close bg-light rounded"style="border:1px solid black" data-bs-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="exampleModalLabel">تسجيل دخول</h5>
+        <button type="button" (click)="refresh()" class="close bg-light rounded" style="border:1px solid black"
+          data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <app-login></app-login>
+        <app-login (Isadmin)="checkAdminState($event)" (sendUname)="DisplayName($event)"></app-login>
       </div>
     </div>
   </div>
 </div>
-
-<header class="container-fluid">
-  <div class="row  pt-1 pb-1 " style="background-color: #2b6777;">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <div class=" col-7">
-      <nav class=" nav nav-pills flex-column flex-sm-row  col-4" style="font-size:2rem;">
-          <a class="flex-sm-fill text-sm-center nav-link  " href="#" ><i class="bi bi-facebook" id="ico"></i></a>
-          <a class="flex-sm-fill text-sm-center nav-link" href="https://wa.me/01122650488"target="_blank"><i class="bi bi-whatsapp" id="ico"></i></a>
-          <a class="flex-sm-fill text-sm-center nav-link " href="#"><i class="bi bi-twitter" id="ico"></i></a>
-        </nav>
-      </div>
-        <nav class=" text-end flex-column flex-sm-row col-3"style="margin: auto;">
-          <button type="button" class="btn btn-outline-light m-2"data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-backdrop="static" data-bs-keyboard="false">تسجيل الدخول</button>
-          <button type="button"class="btn btn-outline-warning m-2" data-bs-toggle="modal" data-bs-target="#registermodal" data-bs-backdrop="static" data-bs-keyboard="false">تسجيل جديد</button>
-      </nav>
-    </div>
-  </div>
-  <div class=" row pt-3 pb-3" style="background-color:#c8d8e4 ;">
-    <div class="col-3 text-center">
-        <img src="../../assets/logo.png"style="width: 50px; height: 50px;background-color:white;cursor: pointer;"class=" p-1 rounded"routerLink="/home">
-    </div>
-    <div class=" col-9">
-        <span id="titl"routerLink="/home">الرئيسيه</span>
-        <span id="titl"routerLink="/courses">الدورات </span>
-        <span id="titl"routerLink="/about">عن الموقع</span>
-        <span id="titl"routerLink="/contact">اتصل بنا</span>
-        <span id="titl"routerLink="/admin">المسؤول</span>
-    </div>
-  </div>
-</header>
-

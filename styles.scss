@@ -2,3 +2,27 @@
 @import 'swiper/scss/navigation';
 @import 'swiper/scss/pagination';
 
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Chrome */
+::-webkit-scrollbar-thumb {
+    background: #2b6777;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}

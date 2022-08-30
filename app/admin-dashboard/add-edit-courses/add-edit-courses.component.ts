@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ICoursesDetails, IData } from 'src/app/models/classes';
 import { ApiService } from 'src/app/services/api.service';
 import { CoursesapiService } from 'src/app/services/coursesapi.service';
@@ -14,33 +15,18 @@ export class AddEditCoursesComponent implements OnInit {
  @Output() ActivateAddEditcrsComp:EventEmitter<boolean>=new EventEmitter();
  Courses_Detailesidlist:any[]=[{}];
  ActivateAddEditcrsC:boolean=true;
- 
+ courses:ICoursesDetails[] =[];
  res:IData[]=[];
- // imgpath:string="";
- //   price:number=0;
- //   discount:number=0;
- //   discription:string="";
- //   numberofvideos:string="";
- //   numberofhours:string="";
- //   date:string="";
+
  
- constructor(private service:CoursesapiService,private sendbroadcast:ApiService) { }
+ constructor(private service:CoursesapiService,private sendbroadcast:ApiService,private toastr:ToastrService) { }
 
 
  ngOnInit(): void {
-   // this.id=this.course.id;
-   // this.name=this.course.name;
-   // this.code=this.course.code;
-   // this.imgpath=this.course.imgpath;
-   // this.price=this.course.price;
-   // this.discount=this.course.discount;
-   // this.discription=this.course.discription;
-   // this.numberofvideos=this.course.numberofvideos;
-   // this.numberofhours=this.course.numberofhours;
-   // this.date=this.course.date;
+
  }
  onSubmit(){
-
+  let today = new Date().toISOString().slice(0, 10)
    if(this.course.id ==0){
      var val1={
        "name": this.course.name,
@@ -50,26 +36,25 @@ export class AddEditCoursesComponent implements OnInit {
        "description": this.course.description,
        "numberofvideos": this.course.numberofvideos,
        "numberofhours": this.course.numberofhours,
-       "date": this.course.date,
-       "code": this.course.code
+       "date":today,
+      
        }
-      this.service.AddCourse(val1).subscribe((res: any)=>{console.log(res)} );
+       this.service.AddCourse(val1).subscribe({next:res=>this.toastr.success("تم اضافه الكورس  بنجاح"), 
+       error:(err)=>{throw new Error(err)}});
       var emalsend={subject:"تم أضافه كورس جديد",body:this.course.name}
-      this.sendbroadcast.sendbroadcast(emalsend).subscribe(res=>console.log(res));
-     }
+      this.sendbroadcast.sendbroadcast(emalsend).subscribe({next:res=>this.toastr.success("تم ارسال اشعار اضافه كورس الى جميع المشتركين بنجاح"),
+      error:(err)=>{throw new Error(err)}});     }
    else{
-     this.EditCourse(this.course);}
+     this.EditCourse(this.course);
+    }
    
-     this.ActivateAddEditcrsC=false;
      this.sendData();
-
-   
  }
 
  EditCourse(dataitem:ICoursesDetails){
    this.course = dataitem;
-   this.service.UpdateCourse(this.course.id,this.course).subscribe((res: any)=>{console.log(res)})   
-   
+   this.service.UpdateCourse(this.course.id,this.course).subscribe({next:res=>this.toastr.success("تم التعديل بنجاح"), 
+   error:(err)=>{throw new Error(err)}   })      
  }
 
  uploadPhoto(event:any){
@@ -77,7 +62,7 @@ export class AddEditCoursesComponent implements OnInit {
    const formData:FormData=new FormData();
    formData.append('files',file);
 
-   this.service.UploadPhoto(formData).subscribe((data)=>{
+   this.service.UploadPhoto(formData).subscribe({next:(data)=>{
      
      this.res=data as IData[]; 
      
@@ -86,11 +71,26 @@ export class AddEditCoursesComponent implements OnInit {
      
 
      }
-   });
+   }, error:(err)=>{throw new Error(err)}});
  }
 
  sendData(){
    this.ActivateAddEditcrsComp.emit(this.ActivateAddEditcrsC);
    
  }
+//  ForUniqueCourseName(){
+//   let crsName = document.getElementById('crsName') as HTMLInputElement | null;;
+//   let naMe = crsName?.value
+  
+//   this.service.getAllCourses().subscribe(data => this.courses=data);
+  
+//   this.courses.forEach(element => {
+//     if (element.name==naMe) {
+//       return true;
+//     }
+//     else{
+//       return false;
+//     }
+//   });
+// }
 }

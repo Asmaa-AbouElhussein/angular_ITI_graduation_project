@@ -23,7 +23,6 @@ export class CouresesComponent implements OnInit {
     numberofvideos:0,
     numberofhours:0,
     date:"",
-    code:""
   };
 
   ngOnInit(): void {
@@ -32,14 +31,23 @@ export class CouresesComponent implements OnInit {
   }
 
   getAllCourses(){
-  this.APIservice.getAllCourses().subscribe(data=>{this.courseList=data,console.log(this.courseList)} );
+  this.APIservice.getAllCourses().subscribe({next:data=>{this.courseList=data},
+    error:(err)=>{throw new Error(err)}});
    }
    getcoursedetailes(id:any){
     this.router.navigate(['/coursedetailes',id])
   }
   getcourse(id:any)
   {
-    this.APIservice.getCourseByid(id).subscribe(data =>{this.course=data})
+    this.APIservice.getCourseByid(id).subscribe({next:data =>{this.course=data},
+      error:(err)=>{throw new Error(err)}})
   }
+  
+search:string="";
+Search()
+{
+  this.APIservice.getAllCourses().subscribe({next:data=>{this.courseList=data.filter(a=>a.name.includes(this.search))},
+    error:(err)=>{throw new Error(err)}});
+}
 
 }

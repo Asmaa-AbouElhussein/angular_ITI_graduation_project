@@ -1,7 +1,124 @@
 *body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: 0;
-    background-color: #f2f2f2;;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  background-color: #f2f2f2;;
+}
+#titl{
+  color:#0cc0e0;
+  margin-left: 1rem;
+  float: right;
+  border:2px  #c8d8e4 solid;
+  padding: 5px 10px 5px 10px;
+  font-size: 20px;
+}
+#titl:hover{
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right,#2ebbe2, #52ab98)1;
+  color: #2b6777;
+ cursor: pointer;
+}
+
+
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: default;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.nav-tabs .nav-link.disabled {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .dropdown-menu {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-pills .nav-link {
+  border-radius: 5px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #4e56e5;
+}
+
+.nav-fill > .nav-link,
+.nav-fill .nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified > .nav-link,
+.nav-justified .nav-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+.nav{
+  height:500px;
+
+}
+@media screen and (max-width:576px) {
+
+.nav{
+  height:120px;
+
+}
+}
+
+.row{
+  margin-top: 143px;
 }

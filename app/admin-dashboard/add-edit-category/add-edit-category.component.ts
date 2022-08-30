@@ -18,8 +18,8 @@ course_Detailesid:number=0;
 Courses_Detailesidlist:any[]=[];
 
   ngOnInit(): void {
-    this.service.getallcoursesid().subscribe(data=>{this.Courses_Detailesidlist=data;
-    })
+    this.service.getallcoursesid().subscribe({next:data=>{this.Courses_Detailesidlist=data;
+    }, error:(err)=>{throw new Error(err)}})
     this.id=this.categoryobj.id;
     this.name=this.categoryobj.name;
     this.course_Detailesid=this.categoryobj.course_Detailesid;
@@ -27,16 +27,16 @@ Courses_Detailesidlist:any[]=[];
 add()
 {
 var val={name:this.name,course_Detailesid:this.course_Detailesid};
-this.service.addcategory(val).subscribe(res=>{
+this.service.addcategory(val).subscribe({next:res=>{
   this.toastr.success(res.toString());
-});
-console.log(val);
+},error:(err)=>{throw new Error(err)}});
+
 }
 update(){
   var val={id:this.id,name:this.name,course_Detailesid:this.course_Detailesid};
-  this.service.updatecategory(val,this.id).subscribe(res=>{
+  this.service.updatecategory(val,this.id).subscribe({next:res=>{
     this.toastr.success(res.toString());
-  });
+  },error:(err)=>{throw new Error(err)}});
 }
 iderror=true;
 validate(value:any){

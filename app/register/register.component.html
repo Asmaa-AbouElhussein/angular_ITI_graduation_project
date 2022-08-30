@@ -39,7 +39,7 @@
           
         </div>
       </div>
-         
+  
       <div class="form-group"style="margin:10px 0px;">
         <label>كلمه السر</label>
         <input
@@ -80,28 +80,6 @@
           </div>
         </div>
       </div>
-      <div class="form-group"style="margin:10px 0px;">
-        <label>العنوان</label>
-        <input [(ngModel)]="address" type="text"formControlName="address"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['address'].errors }"/>
-        <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
-          <div *ngIf="f['address'].errors['required']">مطلوب</div>
-          <div *ngIf="f['address'].errors['minlength']">
-            لا يقل عن 3 
-          </div>
-          <div *ngIf="f['address'].errors['maxlength']">
-            لا يزيد عن 40
-          </div>
-        </div>
-      </div>
-      <div class="form-group"style="margin:10px 0px;">
-        <label>رقم المحمول</label>
-        <input [(ngModel)]="phone" type="text"formControlName="phonenumber"class="form-control"[ngClass]="{ 'is-invalid': submitted && f['phonenumber'].errors }"/>
-        <div *ngIf="submitted && f['phonenumber'].errors" class="invalid-feedback">
-          <div *ngIf="f['phonenumber'].errors['required']">مطلوب</div>
-          <div *ngIf="f['phonenumber'].errors['pattern']">الرقم غير صحيح</div>
-        </div>
-      </div>
-     
     <div class="form-group form-radio"style="margin:10px 0px;">
         <span style="margin-left:40px ;">
             <input [(ngModel)]="gender" id="male" type="radio" value="male" name="gender" formControlName="gender">

@@ -1,8 +1,84 @@
-.button1{
-    outline: none;
-    color: #fff;
-    background-color: #2ebbe2;
-    border: none;
-    border-radius: 15px;
+.button1 {
+  outline: none;
+  color: #fff;
+  background-color: #2ebbe2;
+  border: none;
+  border-radius: 15px;
+  
+}
 
+.search-item {
+  width: 250px;
+  height: 55px;
+  border-radius: 5%;
+  border: rgb(223, 201, 5) solid 1px;
+  font-size: 16px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;
+}
+
+.card {
+  line-height: 1;
+  transition: all 0.3s;
+}
+
+.card:hover,
+.card:active {
+  transform: scale(1.1);
+  border: 1px solid #daed0e;
+}
+
+.card__title,
+.card__price {
+  font-weight: bold;
+}
+
+.card__title {
+  font-size: 1.1rem;
+}
+
+.card__text {
+  display: inline-block;
+  padding: 0.5em;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 0;
+  color: #333;
+  background-color: #daed0e;
+}
+
+.card__btn {
+  width: 100%;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 5px;
+  background-color: #ea332a;
+  border: 1px solid #b61a12;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card__btn:hover,
+.card__btn:focus,
+.card__btn:active {
+  transform: translatey(2px);
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.5);
+  background-color: #b61a12;
+}
+
+.card__btn:active {
+  border: 3px solid #9e1610 inset;
+}
+
+//-------------------------------------------------
+
+.card[_ngcontent-his-c73] {
+  line-height: 0;
 }

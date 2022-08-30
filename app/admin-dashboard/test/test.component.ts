@@ -23,7 +23,6 @@ export class TestComponent implements OnInit,OnChanges {
     private shared:SharedserviceService,private toastr:ToastrService) { }
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("yy");
      
   }
     
@@ -46,21 +45,19 @@ export class TestComponent implements OnInit,OnChanges {
   
   showData(){
     this.GetFk=[]
-    this.shared.Getvideos().subscribe(data=>
-      {this.selectedList=data,
-      console.log(data)
+    this.shared.Getvideos().subscribe({next:data=>{this.selectedList=data.sort((a,b)=>(a.courses_Categoryid<b.courses_Categoryid?-1:1));}
     
-    }
-      )
+    
+  ,error:(err)=>{throw new Error(err)}})
 
     }
       
     Getfks(){
       this.http.get<number[]>("http://localhost:29069/api/Courses_category/Getids"
-      ).subscribe((data)=>
+      ).subscribe({next:(data)=>
       {this.GetFk.push(...data)
         }
-        )
+      ,error:(err)=>{throw new Error(err)}})
     }
       
 
@@ -68,28 +65,26 @@ export class TestComponent implements OnInit,OnChanges {
     
   Update(id:number){
    this.Getfks();
-    this.shared.GetVideoBYId(id).subscribe(data=>
+    this.shared.GetVideoBYId(id).subscribe({next:data=>
      { this.videoform.datalist=data
     }
-    );
+  ,error:(err)=>{throw new Error(err)}});
     this.ModalTitle="تعديل";
   }
   
   delete(item:videodata){
-    if(confirm('Are you sure??'))
+    if(confirm('هل تريد حذف الكورس ؟؟'))
     {
-    this.shared.Deletevideo(item.id).subscribe(data=>{
+    this.shared.Deletevideo(item.id).subscribe({next:data=>{
       this.toastr.success("تم المسح بنجاح")
      
       this.showData();
-    })
+    },error:(err)=>{throw new Error(err)}})
     if (item.videopath!=undefined) {
       
       this.http.delete("http://localhost:29069/api/Video_Upload",{params:new HttpParams().set("filepath",item.videopath)}
-      ).subscribe(data=>
-       console.log(data)
-       
-      )
+      ).subscribe({next:data=>this.toastr.success("تم مسح الفيديو بنجاح"),
+     error:(err)=>{throw new Error(err)}})
     
     
     }

@@ -44,3 +44,17 @@ export interface  codeData {
     code:string,
     courseid:number,
 }
+export interface  sendermess {
+    
+    Sender:string,
+    Receiver:string,
+    message:string,
+}
+ 
+export interface  messRec {
+    
+    message:string,
+     date:Date,
+     sender:string
+}
+

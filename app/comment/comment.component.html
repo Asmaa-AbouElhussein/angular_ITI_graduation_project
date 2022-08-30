@@ -2,86 +2,129 @@
     <div class="testi-box ">
         <div class="profile-area">
             <div class="container">
-                <div class="row">
-                    <swiper [slidesPerView]="3" [spaceBetween]="50" [loop]="true" [autoHeight]="true"
-                        [allowTouchMove]="true" [autoplay]="{ delay: 1000, disableOnInteraction: false }"
-                        [pagination]="{ clickable: true }" [navigation]="true">
-                       
-                        <ng-container *ngFor="let item of usersComments">
-                       
-                        <ng-template swiperSlide>
-                            <div class="card ">
-                              
-                                <div class="img1"></div>
-                                <div class="img2"><img [src]="item.avatarpath" alt=""></div>
-                                 <div class="main-text">
-                                    <h2>{{item.userName}}</h2>
-                                    <p class="text-muted">{{item.comment}}
-                                    <p>{{item.date}}
 
-                                    </p>
+                <div *ngIf="checkcommentsLenght(); then comment1;else comment2 " class="comments"> </div>
+                <ng-template #comment1>
+                    <div class="row">
+
+                        <swiper [config]="swiperConfig">
+                            <ng-container *ngFor="let item of usersComments">
+
+                                <ng-template swiperSlide>
+                                    <div class="card ">
+
+                                        <div class="img1"></div>
+                                        <div class="img2"><img [src]="item.avatarpath" alt=""></div>
+                                        <div class="main-text">
+                                            <h2>{{item.userName}}</h2>
+                                            <p class="text-muted">{{item.comment}}
+                                            <p>{{item.date}}
+
+                                            </p>
+                                            <ng-container *ngIf="item.userName==userName">
+                                                <button class="btn btn-danger"
+                                                    (click)="deleteComment(item.userName)">Remove</button>
+                                            </ng-container>
+
+                                        </div>
+                                        <div class="socials">
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-twitter"></i>
+                                            <i class="fa fa-dribble"></i>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ng-container>
+                        </swiper>
+                    </div>
+                </ng-template>
+                <!--if length of comments smaller than 3-->
+                <ng-template #comment2>
+                    <div class="row ml-auto mr-auto">
+
+                        <div class="d-flex justify-content-between ">
+                            <ng-container *ngFor="let item of usersComments">
+
+
+                                <div class="card col-3 mx-auto">
+
+                                    <div class="img1"></div>
+                                    <div class="img2"><img [src]="item.avatarpath" alt=""></div>
+                                    <div class="main-text">
+                                        <h2>{{item.userName}}</h2>
+                                        <p class="text-muted">{{item.comment}}
+                                        <p>{{item.date}}
+
+                                        </p>
+                                        <ng-container *ngIf="item.userName==userName">
+                                            <button class="btn btn-danger"
+                                                (click)="deleteComment(item.userName)">Remove</button>
+                                        </ng-container>
+
+                                    </div>
+                                    <div class="socials">
+                                        <i class="fa fa-facebook"></i>
+                                        <i class="fa fa-linkedin"></i>
+                                        <i class="fa fa-twitter"></i>
+                                        <i class="fa fa-dribble"></i>
+                                    </div>
                                 </div>
-                                <div class="socials">
-                                    <i class="fa fa-facebook"></i>
-                                    <i class="fa fa-linkedin"></i>
-                                    <i class="fa fa-twitter"></i>
-                                    <i class="fa fa-dribble"></i>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ng-container>
-                    </swiper>
-                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-template>
                 <div class="addBtn">
                     <button type="button" (click)="checkLogin()" class="btn btn-outline-success" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop" (click)="addClick()" 
-                        data-bs-keyboard="false">اضافة تعليق</button>
-                                                                
+                        data-bs-target="#staticBackdrop" data-bs-keyboard="false">اضافة تعليق</button>
+
                     <!-- <button type="button" class="btn btn-primary m-auto text-center " data-bs-toggle="modal"
                         data-bs-target="#coursesmodal" (click)="addClick()" data-bs-backdrop="static"
                         data-bs-keyboard="false">اضافة تعليق</button> -->
                 </div>
 
-                <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
-                                (click)="closeClick()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div *ngIf="islogged; then Thencomment ; else elslogin" > </div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+                                    (click)="closeClick()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div *ngIf="islogged; then Thencomment ; else elslogin"> </div>
 
                                 <ng-template #elslogin>
-                                      <app-login></app-login>
+                                    <app-login></app-login>
                                 </ng-template>
-                               
-                               
-                                <ng-template #Thencomment>        
-                                <div class="all">
-                                    <div class="comment-box">
-                                        <h2>comments</h2>
-                                        <div *ngIf="invalidComment" class="alert alert-danger my-2 py-3 w-100">برجاء ادخال تعليق</div>
-                                        <textarea #textar name="comment"   id="" cols="30" rows="10"
-                                            placeholder="ادخل تعليق "></textarea>
-                                        <button type="submit" (click)="submitComment(textar)">تسجيل </button>
+
+
+                                <ng-template #Thencomment>
+                                    <div class="all">
+                                        <div class="comment-box">
+                                            <h2>comments</h2>
+                                            <div *ngIf="invalidComment" class="alert alert-danger my-2 py-3 w-100">برجاء
+                                                ادخال تعليق</div>
+                                            <textarea #textar name="comment" id="" cols="30" rows="10"
+                                                placeholder="ادخل تعليق "></textarea>
+                                            <button type="submit" (click)="submitComment(textar)">تسجيل </button>
+                                        </div>
+
                                     </div>
-                                    
-                                </div>
-                           </ng-template>
-                            
+                                </ng-template>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                                    
 
-                              
-                                
+
+
+
         </div>
     </div>
 </div>

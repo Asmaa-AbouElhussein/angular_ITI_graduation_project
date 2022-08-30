@@ -1,157 +1,271 @@
-<main class="container-fluid"id="main">
-    <section class="row"id="home">
- 
-     <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
-         <div class="carousel-controls">
- 
-             <ol class="carousel-indicators">
- 
-                 <li style="background-image:url('../../assets/img1.jpg');"
-                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                     aria-current="true" aria-label="Slide 1"></li>
-                 <li style="background-image:url('../../assets/img1.jpg');"
-                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></li>
-                 <li style="background-image:url('../../assets/img1.jpg');"
-                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></li>
-             </ol>
-         </div>
-         <div class="carousel-inner">
-             <div class="carousel-item active" style="background-image:url('../../assets/img1.jpg') ;">
- 
-                 <div class="container ">
-                     <h2>welcome to course</h2>
-                     <p>this course for you</p>
- 
- 
-                 </div>
- 
-             </div>
-             <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
- 
-                 <div class="container ">
-                     <h2>welcome to course</h2>
-                     <p>this course for you</p>
- 
- 
-                 </div>
- 
-             </div>
-             <div class="carousel-item " style="background-image:url('../../assets/img1.jpg') ;">
- 
-                 <div class="container ">
-                     <h2>welcome to course</h2>
-                     <p>this course for you</p>
- 
- 
-                 </div>
- 
-             </div>
-         </div>
-         <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-             data-bs-slide="prev">
-             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Previous</span>
-         </a>
-         <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-             data-bs-slide="next">
-             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Next</span>
-         </a>
-     </div>
- </section>
- 
- <section>
- 
-   <div class="row my-3 container-fluid">
-       <div class="col-lg-6 col-md-6 col-12 text-center my-2">
-           <img class=" rounded-circle" width="45%" height="45%" src="../../assets/moh.png" alt=""
-               srcset="">
-       </div>
- 
-       <div class="col-lg-6 col-md-6 col-12 my-3">
-           <p class="text-muted ">انا محمد كوراني،عندي شغف كبير بمجال علم النفس وتطوير الذات، بعد رحلة بحث وقراية في المجال ده لمده سنة ونص تقريبا اكتشفت ان اي مشكلة في حياة اي شخص مهما كانت، اساسها داخلى في النفس"إن الله لا يغير ما بقوم حتي يغيروا ما بأنفسهم" ومن هنا حابب اشارك مع الناس اي معرفة تطور وتحسن من حياتهم ولو بنسبة %1.</p>
- 
-           <button class="btn btn-warning btn-outline-secondary text-dark ">show more</button>
-       </div>
- 
-   </div>
- 
- 
- </section>
- 
- 
- <section >
-    <div *ngFor="let item of courses let i=index">
-        <div *ngIf="i<4">
-            <div class="row my-4" >
-                <div class="col-7 px-5 text-end">
-                    <h2 class="text-dark">{{item.name}}</h2>
-                      <div>
-                        <p #inputprg class="text-secondary  my-0 mx-2 d-inline ">{{item.description}}/p>
-                        <span #span1 (click)="showMore()" class="text-primary m-0">show more</span>
-                     </div>
-                    <button class="btn btn-secondary btn-list"  (click)="getcoursedetailes(item.id)" style="background-color: #2ebbe2">click</button>
-          
+<!-- Slider-->
+<div style="margin-top:130px">
+    <main class="container-fluid" id="main">
+        <section class="row" id="home">
+    
+            <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+                <div class="carousel-controls">
+    
+                    <ol class="carousel-indicators">
+    
+                        <li style="background-image:url('../../assets/img1.jpg');"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></li>
+                        <li style="background-image:url('../../assets/التعليم-الاليكتروني.png');"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></li>
+                        <li style="background-image:url('../../assets/peace.jpg');"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></li>
+                    </ol>
                 </div>
-                <div class="col-4  my-auto">
-                    <img class="w-lg-75 w-md-75 w-100" height="250PX" [src]="item.imgpath">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-image:url('../../assets/img1.jpg') ;">
+    
+                        <div class="container ">
+                            <h2>مرحبا بك في الموقع</h2>
+                            <p>هذا الكورس لك</p>
+    
+    
+                        </div>
+    
+                    </div>
+                    <div class="carousel-item " style="background-image:url('../../assets/التعليم-الاليكتروني.png') ;">
+    
+                        <div class="container ">
+                            <h2>مرحبا بك في الموقع</h2>
+                            <p>هذا الكورس لك</p>
+    
+    
+                        </div>
+    
+                    </div>
+                    <div class="carousel-item " style="background-image:url('../../assets/peace.jpg') ;">
+    
+                        <div class="container ">
+                            <h2>مرحبا بك في الموقع</h2>
+                            <p>هذا الكورس لك</p>
+    
+    
+                        </div>
+    
+                    </div>
+                </div>
+                <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">السابق</span>
+                </a>
+                <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">التالى</span>
+                </a>
+            </div>
+        </section>
+    
+        <!-- personal Info-->
+        <section>
+    
+            <div style="min-height: 50px;"></div>
+    
+            <div class="row my-3 container-fluid" style="background-color: white;min-height: 300px;">
+    
+                <div class="col-lg-4 col-md-4 col-12 sm-12 text-start ps-5 my-2 mt-5 pt-3">
+                    <img class=" rounded-circle" width="50%" height="85%" src="../../assets/Moh.jpeg" alt="" srcset="">
+                </div>
+    
+                <div class="col-lg-8 col-md-8 col-12 my-3 mt-5">
+                    <p class="text-muted mt-5 h5 col-lg-10 ">عندي شغف كبير بمجال علم النفس وتطوير الذات، بعد
+                        رحلة بحث وقراية في المجال ده لمده سنة ونص تقريبا اكتشفت ان اي مشكلة في حياة اي شخص مهما كانت،
+                        اساسها داخلى في النفس"إن الله لا يغير ما بقوم حتي يغيروا ما بأنفسهم" ومن هنا حابب اشارك مع الناس اي
+                        معرفة تطور وتحسن من حياتهم ولو بنسبة %1.
+                        اي مشكلة في حياة اي شخص مهما كانت، اساسها داخلى في النفس"إن الله لا يغير ما بقوم حتي يغيروا ما
+                        بأنفسهم" ومن هنا حابب اشارك مع الناس اي معرفة تطور وتحسن من حياتهم ولو بنسبة %1</p>
+    
+                </div>
+    
+            </div>
+    
+    
+        </section>
+    
+        <!--Services -->
+    
+    
+        <section class="we-offer-area text-center bg-gray section1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-heading text-center">
+                            <h2>ما الذى <span>نقدمه</span></h2>
+                            <h4>اهم الخدمات التى نقوم بتقديمها</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row our-offer-items less-carousel">
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-pen-fancy"></i>
+                            <h4>توفر كورسات </h4>
+                            <p>
+                                توفر كورسات عالية الجودة في مختلف المجالات تسعى إلى رفع مستوى التعليم الإلكتروني
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+    
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-dharmachakra"></i>
+                            <h4>سهولة التواصل </h4>
+                            <p>
+                                يمكن للمستخدم الاستفسار في اي وقت عن طريق ارسال رساله نصيه عن طريق البريد الالكترونى .
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+    
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-tasks"></i>
+                            <h4>طريقة الدفع </h4>
+                            <p>
+                                يمكنك الدفع الكاش عن طريق مثلا فودفون كاش
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+    
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h4>دعمنا الكامل </h4>
+                            <p>
+                                نحن ندعم اي شخص يحاول التعلم او الحصول علي معلومة تفيده .
+    
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+    
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-recycle"></i>
+                            <h4>تقديم اول حلقه بالمجان </h4>
+                            <p>
+                                لمعرفة هل الكورس مناسب لك او لاء قبل الشراء يمكنك الاطلاع علي اول حلقه.
+    
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+    
+                    <!-- Single Item -->
+                    <div class="col-md-4 col-sm-6 equal-height">
+                        <div class="item">
+                            <i class="fas fa-headset"></i>
+                            <h4>سهول التواصل</h4>
+                            <p>
+                                نحن ندعم اي شخص يحاول التعلم او الحصول علي معلومة تفيده .
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
                 </div>
             </div>
-          
-        </div>
-       
-    </div>
- 
- </section>
-
-  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative" >
-    <div class="row row-cols-1 row-cols-xs-4 row-cols-sm-4 row-cols-lg-4 g-3">
-      <div class="col hp" *ngFor="let item of courses let i=index">
-        <div class="card h-70 shadow-sm" *ngIf="i<4">
-          <a href="#">
-            <img [src]="item.imgpath" height="250PX" class="card-img-top" alt="product.title" />
-          </a>
-  
-          <div class="label-top shadow-sm">
-            <a class="text-white" >asus</a>
-          </div>
-          <div class="card-body">
-            <div class="clearfix mb-3">
-              <span class="float-start badge rounded-pill bg-success">{{item.price}}$</span>
-  
-              <span class="float-end"><a  class="small text-muted text-uppercase aff-link">{{item.discount}}$</a></span>
-            </div>
-            <h5 class="card-title">
-              <a target="_blank" href="#">{{item.description}}</a>
-            </h5>
-  
-            <div class="d-grid gap-2 my-4">
-  
-              <a href="#" class="btn btn-warning bold-btn">اشتري الكورس</a>
-  
-            </div>
-            <div class="clearfix mb-1">
-  
-              <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
-  
-              <span class="float-end">
-                <i class="far fa-heart" style="cursor: pointer"></i>
-  
-              </span>
+        </section>
+    
+    
+    
+    
+    
+        <!-- Courses -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading text-center p-5">
+                    <h2>اهم <span>الدورات</span></h2>
+                    <h4>الدورات الرائجه الان</h4>
+                </div>
             </div>
         </div>
-      </div>
+    
+        <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+            <div class="row row-cols-1 row-cols-xs-4 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3">
+                <div class="col hp" *ngFor="let item of courses let i=index">
+                    <div class="card h-70 shadow-sm" *ngIf="i<4">
+                        <a >
+                            <img [src]="item.imgpath" height="250PX" class="card-img-top" alt="product.title" />
+                        </a>
+    
+                        <div class="label-top shadow-sm">
+                            <a class="text-white">asus</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="clearfix mb-3">
+                                <span class="float-start badge rounded-pill bg-success">بعد الخصم {{item.price-(item.discount*item.price)/100 }}جنيه</span>
+                                <span class="float-start badge rounded-pill bg-success" style=" text-decoration: line-through;">السعر {{item.price}}جنيه</span>
+                              <span class="card-text badge float-end rounded-pill bg-danger" *ngIf="item.discount>0">الخصم {{item.discount/100 | percent}}</span>
+                            </div>
+                            <h3 class="card-title">
+                                <p>{{item.name}}</p>
+                              </h3>
+                            <h5 class="card-title" style="height:100px">
+                                <p class="overflow-auto">{{item.description}}</p>
+                            </h5>
+    
+                            <div class="d-grid gap-2 my-4" style="justify-content: center; text-align: center;">
+    
+                                <a  (click)="getcoursedetailes(item.id)" class="btn bold-btn" style="background-color: #2b6777; color: white;
+                 width: 150px; height: 40px; ">تفاصيل الكورس</a>
+    
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Contact Us-->
+    
+    
+    
+    
+    
+    </main>
+    <div class="row" style="width: 100%;">
+        <div class="col-md-12 col-sm-12 col-md-12">
+            <div class="site-heading text-center p-5">
+                <h2>ابرز <span>التعليقات</span></h2>
+                <h4>اضف تعليقا رأيك يهمنا</h4>
+            </div>
+        </div>
     </div>
-  </div>
+    
+    <app-comment></app-comment>
+    
+    <section class="contactdiv">
+        <div class="container">
+            <div class="row ">
+    
+                <div class="col-12">
+                    <div class="test">
+                        <div class="d-flex p-5" style="justify-content: center; text-align: center;">
+                            <h1 class="me-5">تواصل معنا</h1>
+    
+                            <button class="btn btndiv me-5" style="border-radius: 25px;" routerLink="/contact"> تواصل
+                                معنا</button>
+                            <!-- <button class="btn btndiv me-5" style="border-radius: 25px;" routerLink="#"> اشترك
+                                معانا</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
 </div>
-  
- 
- </main>
- <app-comment></app-comment>
- 
-
-
-
- 
-  
-

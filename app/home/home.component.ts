@@ -17,31 +17,32 @@ export class HomeComponent implements OnInit {
   courses:ICoursesDetails[]=[];
   
   ngOnInit(): void {
-    this.prop=this.inputprg.nativeElement.innerText
-     this.inputprg.nativeElement.innerText=this.prop.substring(0,85)
-    
+  
     }
     ngAfterViewInit() {
       this.getAllCourses();
     }
     getAllCourses(){
-      this.APIservice.getAllCourses().subscribe(data=>{this.courses=data,console.log(this.courses)} );
+      this.APIservice.getAllCourses().subscribe({next:data=>{this.courses=data}, 
+        error:(err)=>{throw new Error(err)}});
        }
        
        getcoursedetailes(id:any){
         this.router.navigate(['/coursedetailes',id])
       }
 
-    showMore(){
-      if(this.flag==false){    
-      this.inputprg.nativeElement.innerText=this.prop.substring(0)
-      this.flag=true
-      this.Fspan.nativeElement.innerText="show less"
-      }else{
-        this.inputprg.nativeElement.innerText=this.prop.substring(0,85)
-        this.flag=false
-      this.Fspan.nativeElement.innerText="show more"
+
+      
+    // showMore(){
+    //   if(this.flag==false){    
+    //   this.inputprg.nativeElement.innerText=this.prop.substring(0)
+    //   this.flag=true
+    //   this.Fspan.nativeElement.innerText="show less"
+    //   }else{
+    //     this.inputprg.nativeElement.innerText=this.prop.substring(0,85)
+    //     this.flag=false
+    //   this.Fspan.nativeElement.innerText="show more"
   
-      }
-    }
+    //   }
+    // }
 }

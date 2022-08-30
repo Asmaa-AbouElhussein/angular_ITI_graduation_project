@@ -10,7 +10,6 @@ export interface ICourse_detailes
           numberofvideos :string;
           numberofhours:string ;
           date :string;
-          code :string;
 
     }
     export interface ICourses_category
@@ -62,5 +61,4 @@ export interface ICoursesDetails {
   numberofvideos:number;
   numberofhours:number;
   date:string;
-  code:string;
 }
