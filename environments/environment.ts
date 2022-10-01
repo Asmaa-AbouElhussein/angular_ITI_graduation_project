@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  Api:"http://localhost:29069"
+  Api:"asmaaapi-001-site1.ctempurl.com"
+  // Api:"http://localhost:29069"
 };
 
 /*
